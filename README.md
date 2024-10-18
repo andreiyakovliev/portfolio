@@ -1,6 +1,4 @@
-# portfolio
-Portfolio of Frontend Developer - Andrii Yakovliev 
-# Andrii Yakovlev's Portfolio
+# Andrii Yakovlev's Portfolio - Frontend Developer
 
 This is a personal portfolio website showcasing the work and projects of Andrii Yakovlev. The site features a clean and modern design, responsive layout, and interactive elements to enhance user experience.
 
