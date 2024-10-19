@@ -4066,14 +4066,23 @@
         let points = pointsNew ? pointsNew : [ [ 2, 12 ], [ 12, update ], [ 22, 12 ] ], d = points.reduce(((acc, point, i, a) => i === 0 ? `M ${point[0]},${point[1]}` : `${acc} ${getPoint(point, i, a, smoothing)}`), "");
         return `<path d="${d}" />`;
     }
+    const dropdownButton = document.querySelector(".dropdown-button");
+    const dropdownContent = document.querySelector(".dropdown-content");
+    dropdownButton.addEventListener("click", (function() {
+        if (dropdownContent.style.display === "block") dropdownContent.style.display = "none"; else dropdownContent.style.display = "block";
+    }));
     document.querySelectorAll(".dropdown-content a").forEach((item => {
         item.addEventListener("click", (function() {
             const selectedFlag = this.querySelector(".flag-icon").src;
-            document.querySelector(".dropdown-button .flag-icon").src = selectedFlag;
-            document.querySelector(".dropdown-button").textContent = "";
-            document.querySelector(".dropdown-button").appendChild(document.createElement("img")).src = selectedFlag;
-            document.querySelector(".dropdown-button").appendChild(document.createTextNode(" Select Country"));
+            dropdownButton.querySelector(".flag-icon").src = selectedFlag;
+            dropdownButton.textContent = "";
+            dropdownButton.appendChild(document.createElement("img")).src = selectedFlag;
+            dropdownButton.appendChild(document.createTextNode(" Select Country"));
+            dropdownContent.style.display = "none";
         }));
+    }));
+    window.addEventListener("click", (function(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) dropdownContent.style.display = "none";
     }));
     function handleBlockMovement() {
         const elements = document.querySelectorAll("[data-move]");

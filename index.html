@@ -6,15 +6,15 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20241018180351">
+	<link rel="stylesheet" href="css/style.min.css?_v=20241019224656">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- icon fonts -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&_v=20241018180351" />
-	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css?_v=20241018180351'>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&_v=20241019224656" />
+	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css?_v=20241019224656'>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://kit.fontawesome.com/9eb88b0a3d.js?_v=20241018180351" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js?_v=20241018180351"></script>
+	<script src="https://kit.fontawesome.com/9eb88b0a3d.js?_v=20241019224656" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js?_v=20241019224656"></script>
 
 </head>
 
@@ -23,7 +23,6 @@
 		<header class="header header__main" id="home">
 			<div class="header__container">
 				<div class="header__menu menu">
-
 					<a href="#" class="menu__logo menu__logo--mini" data-da=".menu__icons, 686.98" data-goto-header data-goto=".main">
 						<svg width="75.775" height="39.795" viewBox="0 0 75.775 39.795" xmlns="http://www.w3.org/2000/svg">
 							<g id="svgGroup" stroke-linecap="round" fill-rule="evenodd">
@@ -38,7 +37,7 @@
 						<span class="icon-menu__bot"></span>
 					</div>
 					<nav class="menu__body">
-						<a href="#home" class="menu__logo" data-da=".header__menu, 991.98, 0" data-move=".menu__body, 686.98, 0" data-goto-header data-goto=".main">
+						<a href="#home" class="menu__logo" data-da=".header__menu, 1023.98, 0" data-move=".menu__body, 686.98, 0" data-goto-header data-goto=".main">
 							<svg width="343.385" height="39.795" viewBox="0 0 343.385 39.795" xmlns="http://www.w3.org/2000/svg">
 								<defs>
 									<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -51,7 +50,7 @@
 								</g>
 							</svg>
 						</a>
-						<ul class="menu__list text-description text-description--menu">
+						<ul class="menu__list text text--menu">
 							<li class=" menu__item"><a href="#" data-goto-header data-goto=".main" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".about">About Me</a>
 							</li>
@@ -63,7 +62,7 @@
 							<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".footer">Contact</a>
 							</li>
 						</ul>
-						<div data-da=".header__menu, 991.98, 1" class="menu__icons social-header">
+						<div data-da=".header__menu, 1023.98, 1" class="menu__icons social-header">
 							<a href="https://github.com/andreiyakovliev" target="_blank" class="menu__icon social-header__github">
 								<i class="fi fi-brands-github"></i>
 							</a>
@@ -190,7 +189,7 @@
 						</div>
 						<div class="main__button button-foo">
 							<h3 class="button-foo__title title title--subtitle"><span>Download My CV</span></h3>
-							<button class="button" href="data/Landing Page Anna Golubovska-design.pdf" download="Design_Prototype.pdf">
+							<a class="button" href="/data/Landing Page Anna Golubovska-design.pdf" download="Design_Prototype.pdf">
 								<div class="icon">
 									<svg viewBox="0 0 14 15">
 										<line x1="5" y1="13" x2="5" y2="1"></line>
@@ -202,11 +201,11 @@
 									</div>
 								</div>
 								<ul>
-									<li>&#68;ownload</li>
+									<li>Download</li>
 									<li>Waiting</li>
 									<li>Open file</li>
 								</ul>
-							</button>
+							</a>
 						</div>
 					</div>
 					<div class="main__text title title--block" id="dynamic-text">
@@ -225,9 +224,9 @@
 				<div class="about__container">
 					<h2 class="about__title title title--section"><span>About Me</span></h2>
 					<div class="about__content">
-						<div class="about__text text-description">
+						<div class="about__text text">
 							<p>
-								My name is Andrii, and I'm a <span>Junior Frontend Developer</span>. My specialization is
+								My name is Andrii, and I'm a <span>Frontend Developer</span>. My specialization is
 								creating
 								<span>user-friendly
 									and responsive</span>
@@ -278,14 +277,14 @@
 							</div>
 							<!-- Якщо потрібна навігація (ліворуч/праворуч) -->
 
-							<div class="about__button">
-								<button type="button" class="about__button-prev swiper-button-prev"><span class="material-symbols-outlined">
-										arrow_circle_left
-									</span></button>
-								<button type="button" class="about__button-next swiper-button-next"><span class="material-symbols-outlined">
-										arrow_circle_right
-									</span></button>
-							</div>
+							<!-- <div class="about__button"> -->
+							<button type="button" class="about__button-prev swiper-button-prev"><span class="material-symbols-outlined">
+									arrow_circle_left
+								</span></button>
+							<button type="button" class="about__button-next swiper-button-next"><span class="material-symbols-outlined">
+									arrow_circle_right
+								</span></button>
+							<!-- </div> -->
 						</div>
 					</div>
 					<div class="about__certificate">
@@ -376,10 +375,10 @@
 					</h2>
 					<div data-tabs class="projects__tabs tabs-projects">
 						<nav data-tabs-titles class="tabs-projects__navigation">
-							<button type="button" class="tabs-projects__title text-description _tab-active">Landing-Page</button>
-							<button type="button" class="tabs-projects__title text-description">Components</button>
-							<button type="button" class="tabs-projects__title text-description">Multi-Page</button>
-							<button type="button" class="tabs-projects__title text-description">Courses</button>
+							<button type="button" class="tabs-projects__title text _tab-active">Landing-Page</button>
+							<button type="button" class="tabs-projects__title text">Components</button>
+							<button type="button" class="tabs-projects__title text">Multi-Page</button>
+							<button type="button" class="tabs-projects__title text">Courses</button>
 						</nav>
 						<div data-tabs-body class="tabs-projects__content">
 
@@ -397,7 +396,7 @@
 													<h4 class="card-projects__title title title--block"><span>Portfolio Andrii
 															Yakovliev</span></h4>
 
-													<div class="card-projects__text text-description">
+													<div class="card-projects__text text">
 														<p>Design and Development of Andrii Yakovlev's Portfolio</p>
 
 														<ul>
@@ -415,7 +414,7 @@
 															<li>Utilization of CSS Grid and CSS Flex</li>
 															<li>Worked with the Gulp build template</li>
 														</ul>
-														<p class="card-projects__text text-description"><span>Tech stack:</span> HTML,
+														<p class="card-projects__text text"><span>Tech stack:</span> HTML,
 															CSS, JavaScript</p>
 													</div>
 
@@ -426,12 +425,12 @@
 																	link
 																</span>
 															</div>
-															<div class="card-projects__text text-description">Live Preview</div>
+															<div class="card-projects__text text">Live Preview</div>
 														</a>
 														<a href="https://github.com/andreiyakovliev/portfolio" target="_blank" class="card-projects__item">
 															<div class="card-projects__icon"><i class="fi fi-brands-github"></i>
 															</div>
-															<div class="card-projects__text text-description">View Code</div>
+															<div class="card-projects__text text">View Code</div>
 														</a>
 													</div>
 												</div>
@@ -443,7 +442,7 @@
 												<div class='card-projects__content'>
 													<h4 class="card-projects__title title title--block"><span>Skilled</span></h4>
 
-													<div class="card-projects__text text-description">
+													<div class="card-projects__text text">
 														<p>Responsive landing-page with using VSCode and Figma</p>
 														<p>The task is to build out this landing page and get it looking as close to
 															the design as possible.
@@ -460,7 +459,7 @@
 															image change when viewed on a mobile phone (was implemented using
 															JavaScript). Smooth adaptation of all elements, fonts,
 															and indents to change the screen size.</p>
-														<p class="card-projects__text text-description"><span>Tech stack:</span> HTML,
+														<p class="card-projects__text text"><span>Tech stack:</span> HTML,
 															CSS</p>
 													</div>
 
@@ -471,12 +470,12 @@
 																	link
 																</span>
 															</div>
-															<div class="card-projects__text text-description">Live Preview</div>
+															<div class="card-projects__text text">Live Preview</div>
 														</a>
 														<a href="https://github.com/andreiyakovliev/frontendmentor/tree/main/skilled-lp" target="_blank" class="card-projects__item">
 															<div class="card-projects__icon"><i class="fi fi-brands-github"></i>
 															</div>
-															<div class="card-projects__text text-description">View Code</div>
+															<div class="card-projects__text text">View Code</div>
 														</a>
 													</div>
 												</div>
@@ -489,14 +488,14 @@
 													<h4 class="card-projects__title title title--block"><span>Sunnyside Agency</span>
 													</h4>
 
-													<div class="card-projects__text text-description">
+													<div class="card-projects__text text">
 														<p>Responsive landing-page with using VSCode and Figma</p>
 														<p>Simply Landing Page where users should be able to:
 
 															- View the optimal layout for the site depending on their device's screen
 															size
 															- See hover states for all interactive elements on the page</p>
-														<p class="card-projects__text text-description"><span>Tech stack:</span> HTML,
+														<p class="card-projects__text text"><span>Tech stack:</span> HTML,
 															CSS</p>
 													</div>
 
@@ -507,12 +506,12 @@
 																	link
 																</span>
 															</div>
-															<div class="card-projects__text text-description">Live Preview</div>
+															<div class="card-projects__text text">Live Preview</div>
 														</a>
 														<a href="https://github.com/andreiyakovliev/frontendmentor/tree/main/sunnyside-agency-lp" target="_blank" class="card-projects__item">
 															<div class="card-projects__icon"><i class="fi fi-brands-github"></i>
 															</div>
-															<div class="card-projects__text text-description">View Code</div>
+															<div class="card-projects__text text">View Code</div>
 														</a>
 													</div>
 												</div>
@@ -536,13 +535,13 @@
 												<div class='card-projects__content'>
 													<h4 class="card-projects__title title title--block"><span>QR Code</span></h4>
 
-													<div class="card-projects__text text-description">
+													<div class="card-projects__text text">
 														<p>Responsive component of QR-Code with using VSCode and Figma</p>
 														<p>The task is to build out the QR code component and get it looking as close
 															to the
 															design as
 															possible. Adaptive for tablets and mobiles.</p>
-														<p class="card-projects__text text-description"><span>Tech stack:</span> HTML,
+														<p class="card-projects__text text"><span>Tech stack:</span> HTML,
 															CSS</p>
 													</div>
 
@@ -553,12 +552,12 @@
 																	link
 																</span>
 															</div>
-															<div class="card-projects__text text-description">Live Preview</div>
+															<div class="card-projects__text text">Live Preview</div>
 														</a>
 														<a href="https://github.com/andreiyakovliev/frontendmentor/tree/main/qr_code_component" class="card-projects__item">
 															<div class="card-projects__icon" target="_blank"><i class="fi fi-brands-github"></i>
 															</div>
-															<div class="card-projects__text text-description">View Code</div>
+															<div class="card-projects__text text">View Code</div>
 														</a>
 													</div>
 												</div>
@@ -619,11 +618,11 @@
 															work.</span>
 													</h4>
 
-													<div class="card-projects__text text-description">
+													<div class="card-projects__text text">
 														<p>Examination work on creating sites for "Freelancer for Life" courses</p>
 														<p>Creating an online store, where I used JavaScript for the first time. It is
 															also a practice of working in a team</p>
-														<p class="card-projects__text text-description"><span>Tech stack:</span> HTML,
+														<p class="card-projects__text text"><span>Tech stack:</span> HTML,
 															CSS, JavaScript
 														</p>
 													</div>
@@ -635,12 +634,12 @@
 																	link
 																</span>
 															</div>
-															<div class="card-projects__text text-description">Live Preview</div>
+															<div class="card-projects__text text">Live Preview</div>
 														</a>
 														<a href="https://github.com/andreiyakovliev/lessons/tree/main/exam_fl" class="card-projects__item" target="_blank">
 															<div class="card-projects__icon"><i class="fi fi-brands-github"></i>
 															</div>
-															<div class="card-projects__text text-description">View Code</div>
+															<div class="card-projects__text text">View Code</div>
 														</a>
 													</div>
 												</div>
@@ -653,10 +652,10 @@
 													<h4 class="card-projects__title title title--block"><span>Practice Work</span>
 													</h4>
 
-													<div class="card-projects__text text-description">
+													<div class="card-projects__text text">
 														<p>Responsive web-site with using VSCode and Figma</p>
 														<p>Practical work on creating sites for "Freelancer for Life" courses</p>
-														<p class="card-projects__text text-description"><span>Tech stack:</span> HTML,
+														<p class="card-projects__text text"><span>Tech stack:</span> HTML,
 															CSS</p>
 													</div>
 
@@ -667,12 +666,12 @@
 																	link
 																</span>
 															</div>
-															<div class="card-projects__text text-description">Live Preview</div>
+															<div class="card-projects__text text">Live Preview</div>
 														</a>
 														<a href="https://github.com/andreiyakovliev/lessons/tree/main/lesson_15_homework" class="card-projects__item">
 															<div class="card-projects__icon"><i class="fi fi-brands-github"></i>
 															</div>
-															<div class="card-projects__text text-description">View Code</div>
+															<div class="card-projects__text text">View Code</div>
 														</a>
 													</div>
 												</div>
@@ -694,7 +693,7 @@
 </section> -->
 		</main>
 		<footer class="footer">
-			<div class="footer__container">
+			<div class="footer__container text text--footer">
 				<h2 class="footer__title title title--section"><span>Get in Touch</span></h2>
 				<div class="footer__contacts">
 					<div class="footer__address address-foo">
@@ -783,7 +782,7 @@
 				</div>
 				<div class="footer__button button-foo">
 					<h4 class="button-foo__title title title--subtitle"><span>Download My CV</span></h4>
-					<button data-ripple class="button">
+					<a href="/data/Landing Page Anna Golubovska-design.pdf" download="Anna.pdf" data-ripple class="button">
 						<div class="icon">
 							<svg viewBox="0 0 14 15">
 								<line x1="5" y1="13" x2="5" y2="1"></line>
@@ -799,7 +798,7 @@
 							<li>Waiting</li>
 							<li>Save file</li>
 						</ul>
-					</button>
+					</a>
 				</div>
 				<!-- <div class="footer__logo">
 			<a href="#home" class="menu__logo" data-goto-header data-goto=".main">
@@ -819,7 +818,7 @@
 			</a>
 		</div> -->
 				<div class="footer__menu-body menu-footer">
-					<ul class="footer__menu-list menu__list text-description">
+					<ul class="footer__menu-list menu__list text">
 						<li class="menu__item"><a href="#" data-goto-header data-goto=".main" class="menu__link">Home</a></li>
 						<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".about">About Me</a></li>
 						<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".skills">Skills</a></li>
@@ -828,18 +827,18 @@
 						<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".blog">News</a></li>
 					</ul>
 				</div>
-				<div class="footer__menu-text text-description">
+				<div class="footer__menu-text">
 					<p>Designed and built by <span>Andrii Yakovliev</span> ❤️ 2024</p>
 				</div>
 			</div>
 	</div>
 	</footer>
 	</div>
-	<script src="js/app.min.js?_v=20241018180351"></script>
+	<script src="js/app.min.js?_v=20241019224656"></script>
 
-	<script src="https://static.elfsight.com/platform/platform.js?_v=20241018180351" data-use-service-core defer></script>
+	<script src="https://static.elfsight.com/platform/platform.js?_v=20241019224656" data-use-service-core defer></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js?_v=20241018180351"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js?_v=20241019224656"></script>
 </body>
 
 </html>
