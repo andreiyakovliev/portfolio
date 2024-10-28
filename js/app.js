@@ -3712,7 +3712,7 @@
                     nextEl: ".about__button-next"
                 },
                 breakpoints: {
-                    374.98: {
+                    359.98: {
                         slidesPerView: 1,
                         spaceBetween: 0,
                         autoWeight: true
@@ -3985,93 +3985,12 @@
         }
         type();
     };
-    const $ = (s, o = document) => o.querySelector(s);
-    const $$ = (s, o = document) => o.querySelectorAll(s);
-    $$(".button").forEach((button => {
-        let icon = $(".icon", button), arrow = $(".icon > svg", button), line = $(".icon div svg", button), svgPath = new Proxy({
-            y: null
-        }, {
-            set(target, key, value) {
-                target[key] = value;
-                if (target.y !== null) line.innerHTML = getPath(target.y, .25, null);
-                return true;
-            },
-            get(target, key) {
-                return target[key];
-            }
-        });
-        svgPath.y = 12;
-        button.addEventListener("click", (e => {
-            if (!button.classList.contains("loading")) {
-                button.classList.add("loading");
-                gsap.timeline({
-                    repeat: 2
-                }).to(svgPath, {
-                    y: 17,
-                    duration: .17,
-                    delay: .03
-                }).to(svgPath, {
-                    y: 12,
-                    duration: .3,
-                    ease: Elastic.easeOut.config(1, .35)
-                });
-                gsap.timeline({
-                    repeat: 2,
-                    repeatDelay: .1,
-                    onComplete() {
-                        gsap.to(arrow, {
-                            "--y": -17.5,
-                            duration: .4
-                        });
-                        setTimeout((() => button.classList.add("complete")), 200);
-                    }
-                }).to(arrow, {
-                    "--y": 9,
-                    duration: .2
-                }).to(arrow, {
-                    "--y": -9,
-                    duration: .2
-                });
-                gsap.timeline().to(icon, {
-                    y: 4,
-                    duration: .2
-                }).to(icon, {
-                    y: 8,
-                    duration: .2,
-                    delay: .2
-                }).to(icon, {
-                    y: 12,
-                    duration: .2,
-                    delay: .2
-                }).to(icon, {
-                    y: 18,
-                    duration: .2,
-                    delay: .2
-                });
-            }
-            e.preventDefault();
-        }));
-    }));
-    function getPoint(point, i, a, smoothing) {
-        let cp = (current, previous, next, reverse) => {
-            let p = previous || current, n = next || current, o = {
-                length: Math.sqrt(Math.pow(n[0] - p[0], 2) + Math.pow(n[1] - p[1], 2)),
-                angle: Math.atan2(n[1] - p[1], n[0] - p[0])
-            }, angle = o.angle + (reverse ? Math.PI : 0), length = o.length * smoothing;
-            return [ current[0] + Math.cos(angle) * length, current[1] + Math.sin(angle) * length ];
-        }, cps = cp(a[i - 1], a[i - 2], point, false), cpe = cp(point, a[i - 1], a[i + 1], true);
-        return `C ${cps[0]},${cps[1]} ${cpe[0]},${cpe[1]} ${point[0]},${point[1]}`;
-    }
-    function getPath(update, smoothing, pointsNew) {
-        let points = pointsNew ? pointsNew : [ [ 2, 12 ], [ 12, update ], [ 22, 12 ] ], d = points.reduce(((acc, point, i, a) => i === 0 ? `M ${point[0]},${point[1]}` : `${acc} ${getPoint(point, i, a, smoothing)}`), "");
-        return `<path d="${d}" />`;
-    }
-    const dropdownButton = document.querySelector(".dropdown-button");
-    const dropdownContent = document.querySelector(".dropdown-content");
+    const dropdownButton = document.querySelector(".language-mode__button");
+    const dropdownContent = document.querySelector(".language-mode__content");
     dropdownButton.addEventListener("click", (function() {
         if (dropdownContent.style.display === "block") dropdownContent.style.display = "none"; else dropdownContent.style.display = "block";
     }));
-    document.querySelectorAll(".dropdown-content a").forEach((item => {
+    document.querySelectorAll(".language-mode__content a").forEach((item => {
         item.addEventListener("click", (function() {
             const selectedFlag = this.querySelector(".flag-icon").src;
             dropdownButton.querySelector(".flag-icon").src = selectedFlag;
@@ -4107,9 +4026,11 @@
         const applyTheme = theme => {
             if (theme === "dark") {
                 body.classList.add("dark-theme");
+                body.classList.remove("light-theme");
                 themeToggle.checked = true;
             } else {
                 body.classList.remove("dark-theme");
+                body.classList.add("light-theme");
                 themeToggle.checked = false;
             }
         };
@@ -4197,6 +4118,28 @@
         }), (function(error) {
             console.log("FAILED...", error);
         }));
+    }));
+    function addAttributeHeader() {
+        const logo = document.querySelectorAll(".menu__logo");
+        const menuLink = document.querySelectorAll(".menu__link");
+        const tabletSize = 1023.98;
+        const wimdowSize = window.innerWidth;
+        logo.forEach((item => {
+            if (wimdowSize > tabletSize) item.removeAttribute("data-goto-header", "");
+        }));
+        menuLink.forEach((item => {
+            if (wimdowSize > tabletSize) item.removeAttribute("data-goto-header", "");
+        }));
+    }
+    addAttributeHeader();
+    window.addEventListener("scroll", (() => {
+        const homeBtn = document.querySelector(".home-button");
+        const lastScrollBlock = document.querySelector(".page").children[1];
+        const lastScrollBlockPosition = lastScrollBlock.getBoundingClientRect();
+        const windowPosition = window.innerHeight;
+        const windowWidth = window.innerWidth;
+        const tabletSize = 1023.98;
+        if (windowWidth > tabletSize) if (lastScrollBlockPosition.bottom < windowPosition) homeBtn.style.display = "block"; else homeBtn.style.display = "none"; else homeBtn.style.display = "none";
     }));
     window["FLS"] = true;
     menuInit();
