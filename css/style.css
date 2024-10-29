@@ -225,6 +225,332 @@ body {
 .icon-menu {
   display: none
 }
+body::after {
+  content: "";
+  background-color: rgba(0,0,0,.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .8s ease 0s;
+  pointer-events: none;
+  z-index: 149
+}
+.popup-show body::after {
+  opacity: 1
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 30px 10px;
+  transition: visibility .8s ease 0s;
+  visibility: hidden;
+  pointer-events: none
+}
+.popup_show {
+  z-index: 150;
+  visibility: visible;
+  overflow: auto;
+  pointer-events: auto
+}
+.popup_show .popup__content {
+  visibility: visible;
+  -webkit-transform: scale(1);
+  transform: scale(1)
+}
+.popup__wrapper {
+  flex-direction: column;
+  min-height: 100%;
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.popup__content {
+  visibility: hidden;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  transition: -webkit-transform .3s ease 0s;
+  transition: transform .3s ease 0s;
+  transition: transform .3s ease 0s,-webkit-transform .3s ease 0s;
+  background-color: var(--block-color);
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 20px
+}
+.lock .popup__content {
+  visibility: visible
+}
+.popup__close svg {
+  color: var(--main-color)
+}
+@-webkit-keyframes changeOrder {
+  from {
+    z-index: 9
+  }
+  to {
+    z-index: 1
+  }
+}
+@keyframes changeOrder {
+  from {
+    z-index: 9
+  }
+  to {
+    z-index: 1
+  }
+}
+@-webkit-keyframes handShake {
+  0%,
+  100% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg)
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg)
+  }
+}
+@keyframes handShake {
+  0%,
+  100% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg)
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg)
+  }
+}
+@-webkit-keyframes handShake2 {
+  0%,
+  100% {
+    -webkit-transform: rotateY(180deg) rotate(10deg);
+    transform: rotateY(180deg) rotate(10deg)
+  }
+  50% {
+    -webkit-transform: rotateY(180deg) rotate(-10deg);
+    transform: rotateY(180deg) rotate(-10deg)
+  }
+}
+@keyframes handShake2 {
+  0%,
+  100% {
+    -webkit-transform: rotateY(180deg) rotate(10deg);
+    transform: rotateY(180deg) rotate(10deg)
+  }
+  50% {
+    -webkit-transform: rotateY(180deg) rotate(-10deg);
+    transform: rotateY(180deg) rotate(-10deg)
+  }
+}
+.popup #hands {
+  text-align: center
+}
+.popup input:checked~div .hand {
+  -webkit-animation: none!important;
+  animation: none!important
+}
+.popup .hand {
+  margin: 3vw;
+  width: clamp(100px,30vw,300px);
+  height: clamp(100px,30vw,300px);
+  position: relative;
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+  display: inline-block;
+  -webkit-animation: handShake 2s infinite;
+  animation: handShake 2s infinite
+}
+.popup .hand>div {
+  position: absolute;
+  box-sizing: border-box;
+  border: .3vw solid #000;
+  background: gold;
+  transition: all .1s
+}
+.popup .fist {
+  height: 16.5vw;
+  left: 6vw;
+  top: 7.5vw;
+  width: 13.5vw;
+  border-radius: 3vw 0 0 3vw
+}
+.popup .finger {
+  width: 10.5vw;
+  height: 4.5vw;
+  border-radius: 3vw;
+  left: 12vw;
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%
+}
+.popup .finger-1 {
+  top: 7.5vw;
+  --dif: 0vw
+}
+.popup .finger-2 {
+  top: 11.7vw;
+  left: 12.6vw;
+  --dif: 0.6vw
+}
+.popup .finger-3 {
+  top: 16vw;
+  --dif: 0vw
+}
+.popup .finger-4 {
+  top: 20vw;
+  height: 3.9vw;
+  left: 11.4vw;
+  --dif: -1.2vw
+}
+.popup div.thumb {
+  width: 5.25vw;
+  height: 10.5vw;
+  border-radius: 0 3vw 3vw 3vw;
+  top: 7.5vw;
+  left: 12vw;
+  border-left: 0 solid;
+  box-shadow: -2.55vw .9vw 0 -2.25vw #000
+}
+.popup div.arm {
+  width: 3.3vw;
+  height: 10.5vw;
+  left: 3vw;
+  top: 10.5vw;
+  border: 0;
+  border-top: .3vw solid #000;
+  border-bottom: .3vw solid #000
+}
+.popup #user-hand {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-animation: handShake2 2s infinite;
+  animation: handShake2 2s infinite;
+  position: relative
+}
+.popup input[type=radio] {
+  position: absolute;
+  top: -1000in;
+  left: -1000in
+}
+.popup input[id$=scissors]:checked~div #user-hand .finger-1,
+.popup input[id^=scissors]:checked~div #computer-hand .finger-1 {
+  width: 18vw;
+  -webkit-transform: rotate(-5deg);
+  transform: rotate(-5deg)
+}
+.popup input[id$=scissors]:checked~div #user-hand .finger-2,
+.popup input[id^=scissors]:checked~div #computer-hand .finger-2 {
+  width: 18vw;
+  -webkit-transform: rotate(5deg);
+  transform: rotate(5deg)
+}
+.popup input[id$=paper]:checked~div #user-hand .finger-1,
+.popup input[id$=paper]:checked~div #user-hand .finger-2,
+.popup input[id$=paper]:checked~div #user-hand .finger-3,
+.popup input[id$=paper]:checked~div #user-hand .finger-4,
+.popup input[id^=paper]:checked~div #computer-hand .finger-1,
+.popup input[id^=paper]:checked~div #computer-hand .finger-2,
+.popup input[id^=paper]:checked~div #computer-hand .finger-3,
+.popup input[id^=paper]:checked~div #computer-hand .finger-4 {
+  left: 18vw;
+  left: calc(18vw + var(--dif));
+  width: 13.33vw;
+  border-left: 0;
+  border-radius: 0 20px 20px 0
+}
+.popup #paper-paper:checked~div h2::before,
+.popup #rock-rock:checked~div h2::before,
+.popup #scissors-scissors:checked~div h2::before {
+  content: "You Tied!"
+}
+.popup #paper-scissors:checked~div h2::before,
+.popup #rock-paper:checked~div h2::before,
+.popup #scissors-rock:checked~div h2::before {
+  content: "You Win!"
+}
+.popup #paper-rock:checked~div h2::before,
+.popup #rock-scissors:checked~div h2::before,
+.popup #scissors-paper:checked~div h2::before {
+  content: "I Win!"
+}
+.popup #message {
+  text-align: center;
+  display: none
+}
+.popup input:checked~#message {
+  display: block
+}
+.popup #hands {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+.popup #icons {
+  width: 7.5vw;
+  height: 50vw;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1.25rem
+}
+.popup #icons>div {
+  align-items: center;
+  justify-content: center;
+  width: 11vw;
+  height: 11vw;
+  overflow: hidden;
+  position: relative
+}
+.popup label:active {
+  position: static;
+  margin-left: 10vw
+}
+.popup label:active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10vw;
+  z-index: 10;
+  height: 10vw
+}
+.popup label {
+  -webkit-animation: changeOrder .45s infinite linear;
+  animation: changeOrder .45s infinite linear;
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  max-width: 11vw;
+  max-height: 11vw;
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+.popup label:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s
+}
+.popup label:nth-of-type(2) {
+  -webkit-animation-delay: -.15s;
+  animation-delay: -.15s
+}
+.popup label:nth-of-type(3) {
+  -webkit-animation-delay: -.3s;
+  animation-delay: -.3s
+}
 .tabs-projects__navigation {
   display: flex;
   justify-content: center;
@@ -1504,17 +1830,20 @@ body {
   .menu__list {
     gap: 1.25rem
   }
+  .popup #computer-hand {
+    margin-right: 18.75rem
+  }
+  .popup label {
+    font-size: 5rem
+  }
   .tabs-projects__navigation:not(:last-child) {
     margin-bottom: 3.0625rem
   }
-  .page>* [class*=__container] {
-    padding-top: 4rem
+  .page .apply-margins {
+    margin-top: 5rem
   }
-  .page>* [class*=__container] {
-    padding-bottom: 4rem
-  }
-  .page>* [class*=__container]:first-child {
-    padding-top: 4rem
+  .page .apply-margins {
+    margin-bottom: 5rem
   }
   .title--main {
     font-size: 3rem
@@ -1576,11 +1905,14 @@ body {
   .footer__address-text {
     font-size: 1.125rem
   }
-  .hero__container {
-    margin-top: 6.25rem
+  .hero {
+    margin-top: 3.125rem
   }
   .hero__container {
-    gap: 2rem
+    padding-bottom: 2.5rem
+  }
+  .hero__container {
+    gap: 5rem
   }
   .hero__text {
     min-height: 2.625rem
@@ -1645,7 +1977,7 @@ body {
   }
   .menu__body {
     position: fixed;
-    width: 50%;
+    width: 30%;
     height: 100%;
     right: -100%;
     top: 0;
@@ -1932,6 +2264,9 @@ body {
   }
 }
 @media (max-width:47.99875em) {
+  .menu__body {
+    min-width: 40%
+  }
   .tabs-projects__navigation {
     flex-direction: column
   }
@@ -1985,6 +2320,9 @@ body {
   }
 }
 @media (max-width:29.99875em) {
+  .menu__body {
+    min-width: 60%
+  }
   .card-projects__active {
     flex-direction: column
   }
@@ -2007,17 +2345,20 @@ body {
   .menu__list {
     gap: .625rem
   }
+  .popup #computer-hand {
+    margin-right: 6.25rem
+  }
+  .popup label {
+    font-size: 2rem
+  }
   .tabs-projects__navigation:not(:last-child) {
     margin-bottom: 1.875rem
   }
-  .page>* [class*=__container] {
-    padding-top: 3rem
+  .page .apply-margins {
+    margin-top: 2.5rem
   }
-  .page>* [class*=__container] {
-    padding-bottom: 3rem
-  }
-  .page>* [class*=__container]:first-child {
-    padding-top: 4rem
+  .page .apply-margins {
+    margin-bottom: 2.5rem
   }
   .title--main {
     font-size: 2rem
@@ -2079,11 +2420,14 @@ body {
   .footer__address-text {
     font-size: .875rem
   }
-  .hero__container {
-    margin-top: 3rem
+  .hero {
+    margin-top: 3.125rem
   }
   .hero__container {
-    gap: 1rem
+    padding-bottom: 2.5rem
+  }
+  .hero__container {
+    gap: 2.5rem
   }
   .hero__text {
     min-height: 3.625rem
@@ -2124,17 +2468,20 @@ body {
   .menu__list {
     gap: clamp(.625rem ,.390625rem + 1.0416666667vw ,1.25rem)
   }
+  .popup #computer-hand {
+    margin-right: clamp(6.25rem ,1.5625rem + 20.8333333333vw ,18.75rem)
+  }
+  .popup label {
+    font-size: clamp(2rem ,.875rem + 5vw ,5rem)
+  }
   .tabs-projects__navigation:not(:last-child) {
     margin-bottom: clamp(1.875rem ,1.4296875rem + 1.9791666667vw ,3.0625rem)
   }
-  .page>* [class*=__container] {
-    padding-top: clamp(3rem ,2.625rem + 1.6666666667vw ,4rem)
+  .page .apply-margins {
+    margin-top: clamp(2.5rem ,1.5625rem + 4.1666666667vw ,5rem)
   }
-  .page>* [class*=__container] {
-    padding-bottom: clamp(3rem ,2.625rem + 1.6666666667vw ,4rem)
-  }
-  .page>* [class*=__container]:first-child {
-    padding-top: clamp(4rem ,4rem + 0 ,4rem)
+  .page .apply-margins {
+    margin-bottom: clamp(2.5rem ,1.5625rem + 4.1666666667vw ,5rem)
   }
   .title--main {
     font-size: clamp(2rem ,1.625rem + 1.6666666667vw ,3rem)
@@ -2196,11 +2543,14 @@ body {
   .footer__address-text {
     font-size: clamp(.875rem ,.78125rem + .4166666667vw ,1.125rem)
   }
-  .hero__container {
-    margin-top: clamp(3rem ,1.78125rem + 5.4166666667vw ,6.25rem)
+  .hero {
+    margin-top: clamp(3.125rem ,3.125rem + 0 ,3.125rem)
   }
   .hero__container {
-    gap: clamp(1rem ,.625rem + 1.6666666667vw ,2rem)
+    padding-bottom: clamp(2.5rem ,2.5rem + 0 ,2.5rem)
+  }
+  .hero__container {
+    gap: clamp(2.5rem ,1.5625rem + 4.1666666667vw ,5rem)
   }
   .hero__text {
     min-height: clamp(2.625rem ,4rem + -1.6666666667vw ,3.625rem)
