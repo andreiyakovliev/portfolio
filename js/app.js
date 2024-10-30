@@ -1,5 +1,227 @@
 (() => {
     "use strict";
+    var __webpack_modules__ = {
+        287: (__unused_webpack_module, exports) => {
+            /**
+ * @license React
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+            var l = Symbol.for("react.element"), n = Symbol.for("react.portal"), p = Symbol.for("react.fragment"), q = Symbol.for("react.strict_mode"), r = Symbol.for("react.profiler"), t = Symbol.for("react.provider"), u = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), x = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), z = Symbol.iterator;
+            function A(a) {
+                if (null === a || "object" !== typeof a) return null;
+                z && a[z] || a["@@iterator"];
+                return "function" === typeof a ? a : null;
+            }
+            var B = {
+                isMounted: function() {
+                    return !1;
+                },
+                enqueueForceUpdate: function() {},
+                enqueueReplaceState: function() {},
+                enqueueSetState: function() {}
+            }, C = Object.assign, D = {};
+            function E(a, b, e) {
+                this.props = a;
+                this.context = b;
+                this.refs = D;
+                this.updater = e || B;
+            }
+            E.prototype.isReactComponent = {};
+            E.prototype.setState = function(a, b) {
+                if ("object" !== typeof a && "function" !== typeof a && null != a) throw Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
+                this.updater.enqueueSetState(this, a, b, "setState");
+            };
+            E.prototype.forceUpdate = function(a) {
+                this.updater.enqueueForceUpdate(this, a, "forceUpdate");
+            };
+            function F() {}
+            F.prototype = E.prototype;
+            function G(a, b, e) {
+                this.props = a;
+                this.context = b;
+                this.refs = D;
+                this.updater = e || B;
+            }
+            var H = G.prototype = new F;
+            H.constructor = G;
+            C(H, E.prototype);
+            H.isPureReactComponent = !0;
+            var I = Array.isArray, J = Object.prototype.hasOwnProperty, K = {
+                current: null
+            }, L = {
+                key: !0,
+                ref: !0,
+                __self: !0,
+                __source: !0
+            };
+            function M(a, b, e) {
+                var d, c = {}, k = null, h = null;
+                if (null != b) for (d in void 0 !== b.ref && b.ref, void 0 !== b.key && "" + b.key, 
+                b) J.call(b, d) && !L.hasOwnProperty(d) && (c[d] = b[d]);
+                var g = arguments.length - 2;
+                if (1 === g) c.children = e; else if (1 < g) {
+                    for (var f = Array(g), m = 0; m < g; m++) f[m] = arguments[m + 2];
+                    c.children = f;
+                }
+                if (a && a.defaultProps) for (d in a.defaultProps, g) void 0 === c[d] && (c[d] = g[d]);
+                return {
+                    $$typeof: l,
+                    type: a,
+                    key: k,
+                    ref: h,
+                    props: c,
+                    _owner: K.current
+                };
+            }
+            function N(a, b) {
+                return {
+                    $$typeof: l,
+                    type: a.type,
+                    key: b,
+                    ref: a.ref,
+                    props: a.props,
+                    _owner: a._owner
+                };
+            }
+            function O(a) {
+                return "object" === typeof a && null !== a && a.$$typeof === l;
+            }
+            function escape(a) {
+                var b = {
+                    "=": "=0",
+                    ":": "=2"
+                };
+                return "$" + a.replace(/[=:]/g, (function(a) {
+                    return b[a];
+                }));
+            }
+            var P = /\/+/g;
+            function Q(a, b) {
+                return "object" === typeof a && null !== a && null != a.key ? escape("" + a.key) : b.toString(36);
+            }
+            function R(a, b, e, d, c) {
+                var k = typeof a;
+                if ("undefined" === k || "boolean" === k) 0;
+                var h = !1;
+                if (null === a) 0; else switch (k) {
+                  case "string":
+                  case "number":
+                    0;
+                    break;
+
+                  case "object":
+                    switch (a.$$typeof) {
+                      case l:
+                      case n:
+                        0;
+                    }
+                }
+                if (h) return c(h), "" === d ? "." + Q(h, 0) : d, I(c) ? (null != a && a.replace(P, "$&/") + "/", 
+                R(c, b, e, "", (function(a) {
+                    return a;
+                }))) : null != c && (O(c) && N(c, e + (!c.key || h && h.key === c.key ? "" : ("" + c.key).replace(P, "$&/") + "/") + a), 
+                b.push(c)), 1;
+                0;
+                0;
+                if (I(a)) for (var g = 0; g < a.length; g++) {
+                    a[g];
+                    var f = d + Q(k, g);
+                    h += R(k, b, e, f, c);
+                } else if (A(a), "function" === typeof f) for (f.call(a), 0; !a.next().done; ) k.value, 
+                d + Q(k, g++), h += R(k, b, e, f, c); else if ("object" === k) throw String(a), 
+                Error("Objects are not valid as a React child (found: " + ("[object Object]" === b ? "object with keys {" + Object.keys(a).join(", ") + "}" : b) + "). If you meant to render a collection of children, use an array instead.");
+                return h;
+            }
+            function S(a, b, e) {
+                if (null == a) return a;
+                var d = [], c = 0;
+                R(a, d, "", "", (function(a) {
+                    return b.call(e, a, c++);
+                }));
+                return d;
+            }
+            function T(a) {
+                if (-1 === a._status) {
+                    var b = a._result;
+                    b();
+                    b.then((function(b) {
+                        if (0 === a._status || -1 === a._status) a._status = 1, a._result = b;
+                    }), (function(b) {
+                        if (0 === a._status || -1 === a._status) a._status = 2, a._result = b;
+                    }));
+                    -1 === a._status && (a._status = 0, a._result = b);
+                }
+                if (1 === a._status) return a._result.default;
+                throw a._result;
+            }
+            var U = {
+                current: null
+            }, V = {
+                transition: null
+            }, W = {
+                ReactCurrentDispatcher: U,
+                ReactCurrentBatchConfig: V,
+                ReactCurrentOwner: K
+            };
+            function X() {
+                throw Error("act(...) is not supported in production builds of React.");
+            }
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+            0;
+        },
+        540: (module, __unused_webpack_exports, __webpack_require__) => {
+            if (true) __webpack_require__(287);
+        }
+    };
+    var __webpack_module_cache__ = {};
+    function __webpack_require__(moduleId) {
+        var cachedModule = __webpack_module_cache__[moduleId];
+        if (cachedModule !== void 0) return cachedModule.exports;
+        var module = __webpack_module_cache__[moduleId] = {
+            exports: {}
+        };
+        __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+        return module.exports;
+    }
     const modules_flsModules = {};
     function getHash() {
         if (location.hash) return location.hash.replace("#", "");
@@ -327,31 +549,6 @@
             }
         }));
     }
-    function rippleEffect() {
-        document.addEventListener("click", (function(e) {
-            const targetItem = e.target;
-            if (targetItem.closest("[data-ripple]")) {
-                const button = targetItem.closest("[data-ripple]");
-                const ripple = document.createElement("span");
-                const diameter = Math.max(button.clientWidth, button.clientHeight);
-                const radius = diameter / 2;
-                ripple.style.width = ripple.style.height = `${diameter}px`;
-                ripple.style.left = `${e.pageX - (button.getBoundingClientRect().left + scrollX) - radius}px`;
-                ripple.style.top = `${e.pageY - (button.getBoundingClientRect().top + scrollY) - radius}px`;
-                ripple.classList.add("ripple");
-                button.dataset.ripple === "once" && button.querySelector(".ripple") ? button.querySelector(".ripple").remove() : null;
-                button.appendChild(ripple);
-                const timeOut = getAnimationDuration(ripple);
-                setTimeout((() => {
-                    ripple ? ripple.remove() : null;
-                }), timeOut);
-                function getAnimationDuration() {
-                    const aDuration = window.getComputedStyle(ripple).animationDuration;
-                    return aDuration.includes("ms") ? aDuration.replace("ms", "") : aDuration.replace("s", "") * 1e3;
-                }
-            }
-        }));
-    }
     function functions_FLS(message) {
         setTimeout((() => {
             if (window.FLS) console.log(message);
@@ -400,255 +597,61 @@
             }
         }
     }
-    class Popup {
-        constructor(options) {
-            let config = {
-                logging: true,
+    class MousePRLX {
+        constructor(props, data = null) {
+            let defaultConfig = {
                 init: true,
-                attributeOpenButton: "data-popup",
-                attributeCloseButton: "data-close",
-                fixElementSelector: "[data-lp]",
-                youtubeAttribute: "data-popup-youtube",
-                youtubePlaceAttribute: "data-popup-youtube-place",
-                setAutoplayYoutube: true,
-                classes: {
-                    popup: "popup",
-                    popupContent: "popup__content",
-                    popupActive: "popup_show",
-                    bodyActive: "popup-show"
-                },
-                focusCatch: true,
-                closeEsc: true,
-                bodyLock: true,
-                hashSettings: {
-                    location: true,
-                    goHash: true
-                },
-                on: {
-                    beforeOpen: function() {},
-                    afterOpen: function() {},
-                    beforeClose: function() {},
-                    afterClose: function() {}
-                }
+                logging: true
             };
-            this.youTubeCode;
-            this.isOpen = false;
-            this.targetOpen = {
-                selector: false,
-                element: false
-            };
-            this.previousOpen = {
-                selector: false,
-                element: false
-            };
-            this.lastClosed = {
-                selector: false,
-                element: false
-            };
-            this._dataValue = false;
-            this.hash = false;
-            this._reopen = false;
-            this._selectorOpen = false;
-            this.lastFocusEl = false;
-            this._focusEl = [ "a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])' ];
-            this.options = {
-                ...config,
-                ...options,
-                classes: {
-                    ...config.classes,
-                    ...options?.classes
-                },
-                hashSettings: {
-                    ...config.hashSettings,
-                    ...options?.hashSettings
-                },
-                on: {
-                    ...config.on,
-                    ...options?.on
-                }
-            };
-            this.bodyLock = false;
-            this.options.init ? this.initPopups() : null;
-        }
-        initPopups() {
-            this.popupLogging(`Прокинувся`);
-            this.eventsPopup();
-        }
-        eventsPopup() {
-            document.addEventListener("click", function(e) {
-                const buttonOpen = e.target.closest(`[${this.options.attributeOpenButton}]`);
-                if (buttonOpen) {
-                    e.preventDefault();
-                    this._dataValue = buttonOpen.getAttribute(this.options.attributeOpenButton) ? buttonOpen.getAttribute(this.options.attributeOpenButton) : "error";
-                    this.youTubeCode = buttonOpen.getAttribute(this.options.youtubeAttribute) ? buttonOpen.getAttribute(this.options.youtubeAttribute) : null;
-                    if (this._dataValue !== "error") {
-                        if (!this.isOpen) this.lastFocusEl = buttonOpen;
-                        this.targetOpen.selector = `${this._dataValue}`;
-                        this._selectorOpen = true;
-                        this.open();
-                        return;
-                    } else this.popupLogging(`Йой, не заповнено атрибут у ${buttonOpen.classList}`);
-                    return;
-                }
-                const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
-                if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
-                    e.preventDefault();
-                    this.close();
-                    return;
-                }
-            }.bind(this));
-            document.addEventListener("keydown", function(e) {
-                if (this.options.closeEsc && e.which == 27 && e.code === "Escape" && this.isOpen) {
-                    e.preventDefault();
-                    this.close();
-                    return;
-                }
-                if (this.options.focusCatch && e.which == 9 && this.isOpen) {
-                    this._focusCatch(e);
-                    return;
-                }
-            }.bind(this));
-            if (this.options.hashSettings.goHash) {
-                window.addEventListener("hashchange", function() {
-                    if (window.location.hash) this._openToHash(); else this.close(this.targetOpen.selector);
-                }.bind(this));
-                window.addEventListener("load", function() {
-                    if (window.location.hash) this._openToHash();
-                }.bind(this));
+            this.config = Object.assign(defaultConfig, props);
+            if (this.config.init) {
+                const paralaxMouse = document.querySelectorAll("[data-prlx-mouse]");
+                if (paralaxMouse.length) {
+                    this.paralaxMouseInit(paralaxMouse);
+                    this.setLogging(`Прокинувся, стежу за об'єктами: (${paralaxMouse.length})`);
+                } else this.setLogging("Немає жодного обєкта. Сплю...");
             }
         }
-        open(selectorValue) {
-            if (bodyLockStatus) {
-                this.bodyLock = document.documentElement.classList.contains("lock") && !this.isOpen ? true : false;
-                if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") {
-                    this.targetOpen.selector = selectorValue;
-                    this._selectorOpen = true;
+        paralaxMouseInit(paralaxMouse) {
+            paralaxMouse.forEach((el => {
+                const paralaxMouseWrapper = el.closest("[data-prlx-mouse-wrapper]");
+                const paramСoefficientX = el.dataset.prlxCx ? +el.dataset.prlxCx : 100;
+                const paramСoefficientY = el.dataset.prlxCy ? +el.dataset.prlxCy : 100;
+                const directionX = el.hasAttribute("data-prlx-dxr") ? -1 : 1;
+                const directionY = el.hasAttribute("data-prlx-dyr") ? -1 : 1;
+                const paramAnimation = el.dataset.prlxA ? +el.dataset.prlxA : 50;
+                let positionX = 0, positionY = 0;
+                let coordXprocent = 0, coordYprocent = 0;
+                setMouseParallaxStyle();
+                if (paralaxMouseWrapper) mouseMoveParalax(paralaxMouseWrapper); else mouseMoveParalax();
+                function setMouseParallaxStyle() {
+                    const distX = coordXprocent - positionX;
+                    const distY = coordYprocent - positionY;
+                    positionX += distX * paramAnimation / 1e3;
+                    positionY += distY * paramAnimation / 1e3;
+                    el.style.cssText = `transform: translate3D(${directionX * positionX / (paramСoefficientX / 10)}%,${directionY * positionY / (paramСoefficientY / 10)}%,0) rotate(0.02deg);`;
+                    requestAnimationFrame(setMouseParallaxStyle);
                 }
-                if (this.isOpen) {
-                    this._reopen = true;
-                    this.close();
-                }
-                if (!this._selectorOpen) this.targetOpen.selector = this.lastClosed.selector;
-                if (!this._reopen) this.previousActiveElement = document.activeElement;
-                this.targetOpen.element = document.querySelector(this.targetOpen.selector);
-                if (this.targetOpen.element) {
-                    if (this.youTubeCode) {
-                        const codeVideo = this.youTubeCode;
-                        const urlVideo = `https://www.youtube.com/embed/${codeVideo}?rel=0&showinfo=0&autoplay=1`;
-                        const iframe = document.createElement("iframe");
-                        iframe.setAttribute("allowfullscreen", "");
-                        const autoplay = this.options.setAutoplayYoutube ? "autoplay;" : "";
-                        iframe.setAttribute("allow", `${autoplay}; encrypted-media`);
-                        iframe.setAttribute("src", urlVideo);
-                        if (!this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) {
-                            this.targetOpen.element.querySelector(".popup__text").setAttribute(`${this.options.youtubePlaceAttribute}`, "");
-                        }
-                        this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).appendChild(iframe);
-                    }
-                    if (this.options.hashSettings.location) {
-                        this._getHash();
-                        this._setHash();
-                    }
-                    this.options.on.beforeOpen(this);
-                    document.dispatchEvent(new CustomEvent("beforePopupOpen", {
-                        detail: {
-                            popup: this
+                function mouseMoveParalax(wrapper = window) {
+                    wrapper.addEventListener("mousemove", (function(e) {
+                        const offsetTop = el.getBoundingClientRect().top + window.scrollY;
+                        if (offsetTop >= window.scrollY || offsetTop + el.offsetHeight >= window.scrollY) {
+                            const parallaxWidth = window.innerWidth;
+                            const parallaxHeight = window.innerHeight;
+                            const coordX = e.clientX - parallaxWidth / 2;
+                            const coordY = e.clientY - parallaxHeight / 2;
+                            coordXprocent = coordX / parallaxWidth * 100;
+                            coordYprocent = coordY / parallaxHeight * 100;
                         }
                     }));
-                    this.targetOpen.element.classList.add(this.options.classes.popupActive);
-                    document.documentElement.classList.add(this.options.classes.bodyActive);
-                    if (!this._reopen) !this.bodyLock ? bodyLock() : null; else this._reopen = false;
-                    this.targetOpen.element.setAttribute("aria-hidden", "false");
-                    this.previousOpen.selector = this.targetOpen.selector;
-                    this.previousOpen.element = this.targetOpen.element;
-                    this._selectorOpen = false;
-                    this.isOpen = true;
-                    setTimeout((() => {
-                        this._focusTrap();
-                    }), 50);
-                    this.options.on.afterOpen(this);
-                    document.dispatchEvent(new CustomEvent("afterPopupOpen", {
-                        detail: {
-                            popup: this
-                        }
-                    }));
-                    this.popupLogging(`Відкрив попап`);
-                } else this.popupLogging(`Йой, такого попапу немає. Перевірте коректність введення. `);
-            }
-        }
-        close(selectorValue) {
-            if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") this.previousOpen.selector = selectorValue;
-            if (!this.isOpen || !bodyLockStatus) return;
-            this.options.on.beforeClose(this);
-            document.dispatchEvent(new CustomEvent("beforePopupClose", {
-                detail: {
-                    popup: this
                 }
             }));
-            if (this.youTubeCode) if (this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).innerHTML = "";
-            this.previousOpen.element.classList.remove(this.options.classes.popupActive);
-            this.previousOpen.element.setAttribute("aria-hidden", "true");
-            if (!this._reopen) {
-                document.documentElement.classList.remove(this.options.classes.bodyActive);
-                !this.bodyLock ? bodyUnlock() : null;
-                this.isOpen = false;
-            }
-            this._removeHash();
-            if (this._selectorOpen) {
-                this.lastClosed.selector = this.previousOpen.selector;
-                this.lastClosed.element = this.previousOpen.element;
-            }
-            this.options.on.afterClose(this);
-            document.dispatchEvent(new CustomEvent("afterPopupClose", {
-                detail: {
-                    popup: this
-                }
-            }));
-            setTimeout((() => {
-                this._focusTrap();
-            }), 50);
-            this.popupLogging(`Закрив попап`);
         }
-        _getHash() {
-            if (this.options.hashSettings.location) this.hash = this.targetOpen.selector.includes("#") ? this.targetOpen.selector : this.targetOpen.selector.replace(".", "#");
-        }
-        _openToHash() {
-            let classInHash = document.querySelector(`.${window.location.hash.replace("#", "")}`) ? `.${window.location.hash.replace("#", "")}` : document.querySelector(`${window.location.hash}`) ? `${window.location.hash}` : null;
-            const buttons = document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) ? document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) : document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash.replace(".", "#")}"]`);
-            this.youTubeCode = buttons.getAttribute(this.options.youtubeAttribute) ? buttons.getAttribute(this.options.youtubeAttribute) : null;
-            if (buttons && classInHash) this.open(classInHash);
-        }
-        _setHash() {
-            history.pushState("", "", this.hash);
-        }
-        _removeHash() {
-            history.pushState("", "", window.location.href.split("#")[0]);
-        }
-        _focusCatch(e) {
-            const focusable = this.targetOpen.element.querySelectorAll(this._focusEl);
-            const focusArray = Array.prototype.slice.call(focusable);
-            const focusedIndex = focusArray.indexOf(document.activeElement);
-            if (e.shiftKey && focusedIndex === 0) {
-                focusArray[focusArray.length - 1].focus();
-                e.preventDefault();
-            }
-            if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
-                focusArray[0].focus();
-                e.preventDefault();
-            }
-        }
-        _focusTrap() {
-            const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
-            if (!this.isOpen && this.lastFocusEl) this.lastFocusEl.focus(); else focusable[0].focus();
-        }
-        popupLogging(message) {
-            this.options.logging ? functions_FLS(`[Попапос]: ${message}`) : null;
+        setLogging(message) {
+            this.config.logging ? functions_FLS(`[PRLX Mouse]: ${message}`) : null;
         }
     }
-    window.addEventListener("load", (() => {
-        modules_flsModules.popup.open(".popup");
-    }));
-    modules_flsModules.popup = new Popup({});
+    modules_flsModules.mousePrlx = new MousePRLX({});
     let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
         const targetBlockElement = document.querySelector(targetBlock);
         if (targetBlockElement) {
@@ -4239,16 +4242,6 @@
     dropdownButton.addEventListener("click", (function() {
         if (dropdownContent.style.display === "block") dropdownContent.style.display = "none"; else dropdownContent.style.display = "block";
     }));
-    document.querySelectorAll(".language-mode__content a").forEach((item => {
-        item.addEventListener("click", (function() {
-            const selectedFlag = this.querySelector(".flag-icon").src;
-            dropdownButton.querySelector(".flag-icon").src = selectedFlag;
-            dropdownButton.textContent = "";
-            dropdownButton.appendChild(document.createElement("img")).src = selectedFlag;
-            dropdownButton.appendChild(document.createTextNode(" Select Country"));
-            dropdownContent.style.display = "none";
-        }));
-    }));
     window.addEventListener("click", (function(event) {
         if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) dropdownContent.style.display = "none";
     }));
@@ -4394,11 +4387,210 @@
     containers.forEach(((container, index) => {
         if (index >= 2) container.classList.add("apply-margins");
     }));
+    __webpack_require__(540);
+    const texts = {
+        en: {
+            title: "Andrii Yakovliev",
+            menu: {
+                home: "Home",
+                about: "About Me",
+                skills: "Skills",
+                projects: "Projects",
+                blog: "Blog",
+                contact: "Contact"
+            },
+            hero: {
+                title: {
+                    hi: "Hi 👋,",
+                    "my-name": "my name is",
+                    name: "Andrii Yakovliev",
+                    position: "I'm a Frontend Developer"
+                },
+                "text-content": "Creating interfaces that bring ideas to life!"
+            },
+            about: {
+                title: "About Me",
+                description: `<p>\n               My name is Andrii, and I'm a <span>Frontend Developer</span>. My specialization is\n               creating\n            < span > user - friendly\n                  and responsive</>\n         interfaces.My main goal is to continuously improve my skills and create projects that benefit\n               users.\n            </p >\n\n            <p>\n               I completed the "Freelancer for Life" course, where I gained basic knowledge in <span>HTML and\n                  CSS</span>.\n               During\n               the Web Star\n               courses, I acquired knowledge in <span>JavaScript</span>. I'm currently actively studying\n               <span>React</span>\n               and\n               improving\n               my\n               skills in\n               <span>responsive design</span>.\n            </p>\n\n            <p>\n               I always strive for perfection in my work and pay attention to detail. This allows me to create\n               high-quality products.\n            </p>\n\n            <p>\n               <span>If you are looking for a motivated and responsible developer, I would be happy to discuss\n                  potential\n                  collaboration.</span>\n            </p>`,
+                certificates: "Certificates"
+            },
+            skills: {
+                title: "Skills",
+                "subtitle-work": "Work with",
+                "subtitle-progress": "In progress"
+            },
+            projects: {
+                title: "Projects",
+                tabs: {
+                    lp: "Landing-Page",
+                    components: "Components",
+                    "multi-page": "Multi-Page",
+                    courses: "Courses"
+                },
+                card: {
+                    "live-preview": "Live Preview",
+                    "view-code": "View Code"
+                },
+                "card-1": {
+                    title: "Portfolio Andrii Yakovliev",
+                    content: `<p>Design and Development of Andrii Yakovlev's Portfolio</p>\n\n                                 <ul>\n                                    <li>Logo changes on screen size reduction</li>\n                                    <li>Moving the logo and social media icons from the center of the menu to the\n                                       outside</li>\n                                    <li>Language and color customization for the website</li>\n                                    <li>Implementation of text printing on the homepage</li>\n                                    <li>Transitioning images into a slider using Swiper.js</li>\n                                    <li>Creating a tabbed menu for projects</li>\n                                    <li>Integrating a blog with LinkedIn</li>\n                                    <li>Configuring the submission form using Email.js</li>\n                                    <li>CV upload feature</li>\n                                    <li>Responsive design for desktop, tablet, and mobile devices</li>\n                                    <li>Utilization of CSS Grid and CSS Flex</li>\n                                    <li>Worked with the Gulp build template</li>\n                                 </ul>\n                                 <p class="card-projects__text text"><span>Tech stack:</span> HTML,\n                                    CSS, JavaScript</p>`
+                },
+                "card-2": {
+                    title: "Skilled",
+                    content: `<p>Responsive landing-page with using VSCode and Figma</p>\n                                 <p>The task is to build out this landing page and get it looking as close to\n                                    the design as possible.\n\n                                    Users should be able to:\n\n                                    View the optimal layout depending on their device's screen size\n                                    See hover states for interactive elements</p>\n                                 <p>\n                                    Realization:\n\n                                    I was creating a landing page using CSS Grid and CSS Flex. Responsive\n                                    design with constant image position change and\n                                    image change when viewed on a mobile phone (was implemented using\n                                    JavaScript). Smooth adaptation of all elements, fonts,\n                                    and indents to change the screen size.</p>\n                                 <p class="card-projects__text text"><span>Tech stack:</span> HTML,\n                                    CSS</p>`
+                },
+                "card-3": {
+                    title: "Sunnyside Agency",
+                    content: `<p>Responsive landing-page with using VSCode and Figma</p>\n                                 <p>Simply Landing Page where users should be able to:\n\n                                    - View the optimal layout for the site depending on their device's screen\n                                    size\n                                    - See hover states for all interactive elements on the page</p>\n                                 <p class="card-projects__text text"><span>Tech stack:</span> HTML,\n                                    CSS</p>`
+                }
+            },
+            blog: {
+                title: "Blog"
+            },
+            footer: {
+                title: "Get in Touch",
+                address: {
+                    title: "Location",
+                    content: "Ukraine, Kyiv, Obolonsky district"
+                },
+                mail: {
+                    title: "My email",
+                    content: `<p>andrii.yakovliev.frontend</p>\n\t\t\t\t\t\t\t<p>@gmail.com</p>`
+                },
+                phone: {
+                    title: "Call me now",
+                    content: "+380 67 584 94 09"
+                },
+                form: {
+                    title: "Let's talk",
+                    name: "Name*",
+                    mail: "Email*",
+                    phone: "Phone number",
+                    message: "Message*",
+                    success: "Your message has been sent!",
+                    send: "SEND",
+                    cancel: "CANCEL",
+                    required: "* - required"
+                },
+                contact: {
+                    title: "Save my contact"
+                }
+            },
+            button: "Download My CV",
+            signature: `Designed and built by <span>Andrii Yakovliev</span> ❤️ 2024`
+        },
+        uk: {
+            title: "Андрій Яковлєв",
+            menu: {
+                home: "Головна",
+                about: "Про мене",
+                skills: "Навички",
+                projects: "Проекти",
+                blog: "Блог",
+                contact: "Контакти"
+            },
+            hero: {
+                title: {
+                    hi: "Вітаю 👋,",
+                    "my-name": "мене звати",
+                    name: "Андрій Яковлєв",
+                    position: "Я Frontend Розробник"
+                },
+                "text-content": "Створення інтерфейсів, які втілюють ідеї в життя!"
+            },
+            about: {
+                title: "Про мене",
+                description: `<p>\n               Мене звати Андрій і я <span>Frontend Розробник</span>. Моя спеціалізація це створення <span> user - френдлі\n                  та адаптивні</span>\n         інтерфейси. Моя головна мета — постійно вдосконалювати свої навички та створювати проєкти, які приносять користь користувачам.\n            </p >\n\n            <p>\n               Я завершив курс "Фрилансер по життю", де здобув базові знання у <span>HTML та CSS</span>.\nПід час курсів Web Star я опанував <span>JavaScript</span>. Зараз я активно вивчаю <span>React</span> і покращую свої навички в <span>адаптивному дизайні</span>.\n            </p>\n\n            <p>\n               Я завжди прагну до досконалості у своїй роботі та приділяю увагу деталям. Це дозволяє мені створювати високоякісні продукти.\n            </p>\n\n            <p>\n               <span>Якщо ви шукаєте вмотивованого та відповідального розробника, буду радий обговорити можливу\n                  співпрацю.</span>\n            </p>`,
+                certificates: "Сертифікати"
+            },
+            skills: {
+                title: "Навички",
+                "subtitle-work": "Працюю з",
+                "subtitle-progress": "В процесі вивчення"
+            },
+            projects: {
+                title: "Проекти",
+                tabs: {
+                    lp: "Односторінкові сайти",
+                    components: "Компоненти",
+                    "multi-page": "Багатосторінкові сайти",
+                    courses: "Курси"
+                },
+                card: {
+                    "live-preview": "Огляд сайту",
+                    "view-code": "Оглад коду"
+                },
+                "card-1": {
+                    title: "Портфоліо Андрія Яковлєва",
+                    content: `<p>Дизайн та розробка портфоліо Андрія Яковлєва</p>\n\n<ul>\n   <li>Зміна логотипу при зменшенні розміру екрану</li>\n   <li>Переміщення логотипу та іконок соціальних мереж з меню в Header</li>\n   <li>Налаштування мови та кольорової схеми для сайту</li>\n   <li>Реалізація ефекту друку тексту на головній сторінці</li>\n   <li>Перетворення зображень у слайдер за допомогою Swiper.js</li>\n   <li>Створення вкладкового меню для проєктів</li>\n   <li>Інтеграція блогу з LinkedIn</li>\n   <li>Налаштування форми відправки за допомогою Email.js</li>\n   <li>Функція завантаження резюме</li>\n   <li>Адаптивний дизайн для комп’ютера, планшета та мобільних пристроїв</li>\n   <li>Використання CSS Grid та CSS Flex</li>\n   <li>Працював із шаблоном збірки Gulp</li>\n</ul>\n<p class="card-projects__text text"><span>Технології:</span> HTML, CSS, JavaScript</p>`
+                },
+                "card-2": {
+                    title: "Skilled",
+                    content: `<p>Адаптивна лендінг-сторінка з використанням VSCode та Figma</p>\n<p>Завдання полягає в тому, щоб створити цю лендінг-сторінку та максимально наблизити її до дизайну.\n\nКористувачі повинні мати можливість:\n\nПереглядати оптимальну розкладку в залежності від розміру екрана їх пристрою\nБачити стан наведення для інтерактивних елементів</p>\n<p>\nРеалізація:\n\nЯ створював лендінг-сторінку, використовуючи CSS Grid та CSS Flex. Адаптивний\nдизайн з постійною зміною позиції зображення та\nзміною зображення при перегляді на мобільному телефоні (реалізовано за допомогою\nJavaScript). Плавна адаптація всіх елементів, шрифтів\nта відступів при зміні розміру екрана.</p>\n<p class="card-projects__text text"><span>Технологічний стек:</span> HTML,\nCSS</p>\n`
+                },
+                "card-3": {
+                    title: "Агенція Sunnyside",
+                    content: `<p>Адаптивна лендінг-сторінка з використанням VSCode та Figma</p>\n<p>Проста лендінг-сторінка, де користувачі можуть:\n\n   - Переглядати оптимальне розташування сайту в залежності від розміру екрана  пристрою\n   - Бачити стани при наведенні для всіх інтерактивних елементів на сторінці</p>\n<p class="card-projects__text text"><span>Технологічний стек:</span> HTML,\n   CSS</p>\n`
+                }
+            },
+            blog: {
+                title: "Блог"
+            },
+            footer: {
+                title: "Зв'яжіться зі мною",
+                address: {
+                    title: "Локація",
+                    content: "Україна, Київ, Оболонський район"
+                },
+                mail: {
+                    title: "Мій email",
+                    content: `<p>andrii.yakovliev.frontend</p>\n\t\t\t\t\t\t\t<p>@gmail.com</p>`
+                },
+                phone: {
+                    title: "Зателефонуйте мені",
+                    content: "+380 67 584 94 09"
+                },
+                form: {
+                    title: "Давайте поговоримо",
+                    name: "Ім'я*",
+                    mail: "Email*",
+                    phone: "Номер телефону",
+                    message: "Повідомлення*",
+                    success: "Ваше повідомлення успішно відправлене!",
+                    send: "ВІДПРАВИТИ",
+                    cancel: "СКАСУВАТИ",
+                    required: "* - обов'язково"
+                },
+                contact: {
+                    title: "Збережіть мій контакт"
+                }
+            },
+            button: "Завантажити моє резюму",
+            signature: `Дизайн та розробка <span>Андрій Яковлєв</span> ❤️ 2024`
+        }
+    };
+    const currentLang = "uk";
+    const enBtn = document.querySelector('[data-flag="en"]');
+    const ukBtn = document.querySelector('[data-flag="ua"]');
+    function changeLanguage() {
+        const elements = document.querySelectorAll("[data-text]");
+        elements.forEach((element => {
+            const key = element.getAttribute([ "data-text" ]);
+            const keys = key.split(".");
+            let textValue = texts[currentLang];
+            keys.forEach((k => {
+                textValue = textValue[k];
+            }));
+            element.innerHTML = textValue;
+        }));
+    }
+    changeLanguage();
+    console.log(currentLang);
+    console.log(enBtn);
+    console.log(ukBtn);
     window["FLS"] = true;
     menuInit();
     tabs();
     showMore();
-    rippleEffect();
     formFieldsInit({
         viewPass: false,
         autoHeight: true
