@@ -1057,14 +1057,14 @@ body {
   min-width: 0
 }
 [class*=__container] {
-  max-width: 82.5rem;
+  max-width: 66.5rem;
   margin: 0 auto;
   padding: 0 1.25rem
 }
 [class*="--gc"] {
   display: grid;
   min-width: 0;
-  grid-template-columns: 1.25rem 1fr minmax(auto,80rem) 1fr 1.25rem
+  grid-template-columns: 1.25rem 1fr minmax(auto,64rem) 1fr 1.25rem
 }
 [class*="--gc"]>* {
   min-width: 0;
@@ -2019,10 +2019,16 @@ body {
 }
 .footer__qr-code {
   grid-area: 3/1/4/2;
-  align-self: center
+  display: grid;
+  place-items: center
+}
+.footer__qr-code a {
+  display: grid;
+  place-items: center
 }
 .footer__qr-code img {
-  max-width: 100%
+  max-width: 50%;
+  border-radius: .55em
 }
 .footer__button {
   grid-area: 3/2/4/3;
@@ -2075,6 +2081,10 @@ body {
   justify-content: space-evenly;
   align-items: center;
   gap: 2.1875rem
+}
+.footer__social-icons a {
+  display: grid;
+  place-items: center
 }
 .footer__form {
   border-radius: 10px;
@@ -2152,10 +2162,6 @@ body {
 .footer__form-anotation {
   font-size: .625rem
 }
-.footer__qr-code {
-  display: grid;
-  place-items: center
-}
 .access {
   display: none;
   flex-direction: column;
@@ -2182,7 +2188,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
   width: 1038px;
   max-width: 100%
@@ -2198,7 +2204,7 @@ body {
   text-align: center
 }
 .hero__text {
-  min-height: 1.875em
+  min-height: 2.8125em
 }
 .hero__arrow {
   display: flex;
@@ -2292,11 +2298,12 @@ body {
   display: flex;
   border: .0625rem solid var(--block-color);
   border-radius: 1.25rem;
-  background-color: var(--block-color)
+  background-color: #fff
 }
 .card-projects__image {
   align-self: center;
-  flex: 1 1 50%
+  flex: 1 1 50%;
+  height: auto
 }
 .card-projects__image img {
   max-width: 100%;
@@ -2307,7 +2314,8 @@ body {
   padding: 1.5625rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
+  background-color: var(--block-color)
 }
 .card-projects__text ul:not(:last-child) {
   margin-bottom: .75rem
@@ -2402,7 +2410,7 @@ body {
     grid-row-start: 3
   }
 }
-@media (min-width:82.5em) {
+@media (min-width:66.5em) {
   .menu__body {
     row-gap: 2rem
   }
@@ -2416,10 +2424,10 @@ body {
     margin-bottom: 3.0625rem
   }
   .page .apply-margins {
-    margin-top: 5rem
+    padding-top: 3.75rem
   }
   .page .apply-margins {
-    margin-bottom: 5rem
+    padding-bottom: 3.75rem
   }
   .title--main {
     font-size: 3rem
@@ -2481,14 +2489,17 @@ body {
   .footer__address-text {
     font-size: 1.125rem
   }
-  .hero {
-    margin-top: 3.125rem
+  .hero__container {
+    padding-top: 10.625rem
   }
   .hero__container {
-    padding-bottom: 2.5rem
+    padding-bottom: 10.625rem
   }
   .hero__container {
     gap: 5rem
+  }
+  .hero__title {
+    gap: .9375rem
   }
   .hero__text {
     min-height: 2.625rem
@@ -2930,10 +2941,10 @@ body {
     margin-bottom: 1.875rem
   }
   .page .apply-margins {
-    margin-top: 2.5rem
+    padding-top: 2.5rem
   }
   .page .apply-margins {
-    margin-bottom: 2.5rem
+    padding-bottom: 2.5rem
   }
   .title--main {
     font-size: 2rem
@@ -2995,14 +3006,17 @@ body {
   .footer__address-text {
     font-size: .875rem
   }
-  .hero {
-    margin-top: 3.125rem
+  .hero__container {
+    padding-top: 4.375rem
   }
   .hero__container {
-    padding-bottom: 2.5rem
+    padding-bottom: 1.875rem
   }
   .hero__container {
     gap: 2.5rem
+  }
+  .hero__title {
+    gap: .3125rem
   }
   .hero__text {
     min-height: 3.625rem
@@ -3033,124 +3047,127 @@ body {
     column-gap: .9375rem
   }
 }
-@media (min-width:22.5em)and (max-width:82.5em) {
+@media (min-width:22.5em)and (max-width:66.5em) {
   .menu__body {
-    row-gap: clamp(1.125rem ,.796875rem + 1.4583333333vw ,2rem)
+    row-gap: clamp(1.125rem ,.6775568182rem + 1.9886363636vw ,2rem)
   }
   .menu__logo svg {
-    font-size: clamp(1.5rem ,1.40625rem + .4166666667vw ,1.75rem)
+    font-size: clamp(1.5rem ,1.3721590909rem + .5681818182vw ,1.75rem)
   }
   .menu__list {
-    gap: clamp(.625rem ,.390625rem + 1.0416666667vw ,1.25rem)
+    gap: clamp(.625rem ,.3053977273rem + 1.4204545455vw ,1.25rem)
   }
   .tabs-projects__navigation:not(:last-child) {
-    margin-bottom: clamp(1.875rem ,1.4296875rem + 1.9791666667vw ,3.0625rem)
+    margin-bottom: clamp(1.875rem ,1.2677556818rem + 2.6988636364vw ,3.0625rem)
   }
   .page .apply-margins {
-    margin-top: clamp(2.5rem ,1.5625rem + 4.1666666667vw ,5rem)
+    padding-top: clamp(2.5rem ,1.8607954545rem + 2.8409090909vw ,3.75rem)
   }
   .page .apply-margins {
-    margin-bottom: clamp(2.5rem ,1.5625rem + 4.1666666667vw ,5rem)
+    padding-bottom: clamp(2.5rem ,1.8607954545rem + 2.8409090909vw ,3.75rem)
   }
   .title--main {
-    font-size: clamp(2rem ,1.625rem + 1.6666666667vw ,3rem)
+    font-size: clamp(2rem ,1.4886363636rem + 2.2727272727vw ,3rem)
   }
   .title--section {
-    font-size: clamp(1.75rem ,1.5625rem + .8333333333vw ,2.25rem)
+    font-size: clamp(1.75rem ,1.4943181818rem + 1.1363636364vw ,2.25rem)
   }
   .title--section:not(:last-child) {
-    margin-bottom: clamp(2.5rem ,2.03125rem + 2.0833333333vw ,3.75rem)
+    margin-bottom: clamp(2.5rem ,1.8607954545rem + 2.8409090909vw ,3.75rem)
   }
   .title--subtitle {
-    font-size: clamp(1.5rem ,1.359375rem + .625vw ,1.875rem)
+    font-size: clamp(1.5rem ,1.3082386364rem + .8522727273vw ,1.875rem)
   }
   .title--subtitle:not(:last-child) {
-    margin-bottom: clamp(1.875rem ,1.40625rem + 2.0833333333vw ,3.125rem)
+    margin-bottom: clamp(1.875rem ,1.2357954545rem + 2.8409090909vw ,3.125rem)
   }
   .title--block {
-    font-size: clamp(1.5rem ,1.2421875rem + 1.1458333333vw ,2.1875rem)
+    font-size: clamp(1.5rem ,1.1484375rem + 1.5625vw ,2.1875rem)
   }
   .title--block:not(:last-child) {
-    margin-bottom: clamp(1.5rem ,1.3125rem + .8333333333vw ,2rem)
+    margin-bottom: clamp(1.5rem ,1.2443181818rem + 1.1363636364vw ,2rem)
   }
   .text {
-    font-size: clamp(1rem ,.953125rem + .2083333333vw ,1.125rem)
+    font-size: clamp(1rem ,.9360795455rem + .2840909091vw ,1.125rem)
   }
   .text--menu {
-    font-size: clamp(1.125rem ,1.640625rem + -.625vw ,1.5rem)
+    font-size: clamp(1.125rem ,1.6917613636rem + -.8522727273vw ,1.5rem)
   }
   .text--footer {
-    font-size: clamp(.875rem ,.828125rem + .2083333333vw ,1rem)
+    font-size: clamp(.875rem ,.8110795455rem + .2840909091vw ,1rem)
   }
   .text-footer {
-    font-size: clamp(.875rem ,.828125rem + .2083333333vw ,1rem)
+    font-size: clamp(.875rem ,.8110795455rem + .2840909091vw ,1rem)
   }
   .material-symbols-outlined {
-    font-size: clamp(1.875rem ,1.40625rem + 2.0833333333vw ,3.125rem)
+    font-size: clamp(1.875rem ,1.2357954545rem + 2.8409090909vw ,3.125rem)
   }
   .header__menu {
-    padding-top: clamp(.3125rem ,-.0390625rem + 1.5625vw ,1.25rem)
+    padding-top: clamp(.3125rem ,-.1669034091rem + 2.1306818182vw ,1.25rem)
   }
   .header__menu {
-    padding-bottom: clamp(.3125rem ,-.0390625rem + 1.5625vw ,1.25rem)
+    padding-bottom: clamp(.3125rem ,-.1669034091rem + 2.1306818182vw ,1.25rem)
   }
   .language-mode__button {
-    padding: clamp(.125rem ,-.0625rem + .8333333333vw ,.625rem)
+    padding: clamp(.125rem ,-.1306818182rem + 1.1363636364vw ,.625rem)
   }
   .language-mode__content a {
-    padding: clamp(.125rem ,-.0625rem + .8333333333vw ,.625rem)
+    padding: clamp(.125rem ,-.1306818182rem + 1.1363636364vw ,.625rem)
   }
   .footer__address-wrapper {
-    padding: clamp(.9375rem ,.7265625rem + .9375vw ,1.5rem)
+    padding: clamp(.9375rem ,.6498579545rem + 1.2784090909vw ,1.5rem)
   }
   .footer__address-wrapper {
-    gap: clamp(.9375rem ,.5859375rem + 1.5625vw ,1.875rem)
+    gap: clamp(.9375rem ,.4580965909rem + 2.1306818182vw ,1.875rem)
   }
   .footer__address-title {
-    font-size: clamp(1rem ,.90625rem + .4166666667vw ,1.25rem)
+    font-size: clamp(1rem ,.8721590909rem + .5681818182vw ,1.25rem)
   }
   .footer__address-text {
-    font-size: clamp(.875rem ,.78125rem + .4166666667vw ,1.125rem)
-  }
-  .hero {
-    margin-top: clamp(3.125rem ,3.125rem + 0 ,3.125rem)
+    font-size: clamp(.875rem ,.7471590909rem + .5681818182vw ,1.125rem)
   }
   .hero__container {
-    padding-bottom: clamp(2.5rem ,2.5rem + 0 ,2.5rem)
+    padding-top: clamp(4.375rem ,1.1789772727rem + 14.2045454545vw ,10.625rem)
   }
   .hero__container {
-    gap: clamp(2.5rem ,1.5625rem + 4.1666666667vw ,5rem)
+    padding-bottom: clamp(1.875rem ,-2.5994318182rem + 19.8863636364vw ,10.625rem)
+  }
+  .hero__container {
+    gap: clamp(2.5rem ,1.2215909091rem + 5.6818181818vw ,5rem)
+  }
+  .hero__title {
+    gap: clamp(.3125rem ,-.0071022727rem + 1.4204545455vw ,.9375rem)
   }
   .hero__text {
-    min-height: clamp(2.625rem ,4rem + -1.6666666667vw ,3.625rem)
+    min-height: clamp(2.625rem ,4.1363636364rem + -2.2727272727vw ,3.625rem)
   }
   .hero__text:not(:last-child) {
     margin-bottom: clamp(.0000000625rem ,.0000000625rem + 0 ,.0000000625rem)
   }
   .about__content:not(:last-child) {
-    margin-bottom: clamp(1.875rem ,1.4296875rem + 1.9791666667vw ,3.0625rem)
+    margin-bottom: clamp(1.875rem ,1.2677556818rem + 2.6988636364vw ,3.0625rem)
   }
   .skills__items {
-    font-size: clamp(1rem ,.90625rem + .4166666667vw ,1.25rem)
+    font-size: clamp(1rem ,.8721590909rem + .5681818182vw ,1.25rem)
   }
   .skills__items img {
-    max-height: clamp(3.125rem ,2.65625rem + 2.0833333333vw ,4.375rem)
+    max-height: clamp(3.125rem ,2.4857954545rem + 2.8409090909vw ,4.375rem)
   }
   .skills__items:not(:last-child) {
-    margin-bottom: clamp(1.875rem ,1.4296875rem + 1.9791666667vw ,3.0625rem)
+    margin-bottom: clamp(1.875rem ,1.2677556818rem + 2.6988636364vw ,3.0625rem)
   }
   .card-projects__active {
-    row-gap: clamp(.9375rem ,.8203125rem + .5208333333vw ,1.25rem)
+    row-gap: clamp(.9375rem ,.7776988636rem + .7102272727vw ,1.25rem)
   }
 }
-@media (max-width:63.99875em)and (min-width:82.5em) {
+@media (max-width:63.99875em)and (min-width:66.5em) {
   .menu__list {
     row-gap: .0000000625rem
   }
 }
-@media (max-width:63.99875em)and (min-width:22.5em)and (max-width:82.5em) {
+@media (max-width:63.99875em)and (min-width:22.5em)and (max-width:66.5em) {
   .menu__list {
-    row-gap: clamp(.0000000625rem ,2.0624999766rem + -2.4999998958vw ,1.5rem)
+    row-gap: clamp(.0000000625rem ,2.2670454226rem + -3.409090767vw ,1.5rem)
   }
 }
 @media (min-width:47.99875em)and (max-width:89.99875em) {

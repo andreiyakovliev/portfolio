@@ -4224,27 +4224,21 @@
     da.init();
     window.onload = function() {
         const textElement = document.getElementById("text-content");
-        const text = textElement.textContent;
-        textElement.textContent = "";
-        let index = 0;
-        const typingSpeed = 100;
-        function type() {
-            if (index < text.length) {
-                textElement.textContent += text.charAt(index);
-                index++;
-                setTimeout(type, typingSpeed);
+        if (textElement) {
+            const text = textElement.textContent;
+            textElement.textContent = "";
+            let index = 0;
+            const typingSpeed = 100;
+            function type() {
+                if (index < text.length) {
+                    textElement.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, typingSpeed);
+                }
             }
-        }
-        type();
+            type();
+        } else console.log("Element not found!");
     };
-    const dropdownButton = document.querySelector(".language-mode__button");
-    const dropdownContent = document.querySelector(".language-mode__content");
-    dropdownButton.addEventListener("click", (function() {
-        if (dropdownContent.style.display === "block") dropdownContent.style.display = "none"; else dropdownContent.style.display = "block";
-    }));
-    window.addEventListener("click", (function(event) {
-        if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) dropdownContent.style.display = "none";
-    }));
     function handleBlockMovement() {
         const elements = document.querySelectorAll("[data-move]");
         elements.forEach((element => {
@@ -4275,6 +4269,15 @@
                 body.classList.add("light-theme");
                 themeToggle.checked = false;
             }
+            updateImage();
+        };
+        const updateImage = () => {
+            const qrCodeImage = document.querySelector(".footer__qr-code-image");
+            const darkTheme = document.body.classList.contains("dark-theme");
+            const currentLang = document.documentElement.lang;
+            const theme = darkTheme ? "dark" : "light";
+            const lang = currentLang;
+            qrCodeImage.src = `img/footer/qr-code/qrcode-${theme}-${lang}.svg`;
         };
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme) applyTheme(savedTheme); else {
@@ -4366,11 +4369,18 @@
         const menuLink = document.querySelectorAll(".menu__link");
         const tabletSize = 1023.98;
         const wimdowSize = window.innerWidth;
+        const buttonHero = document.querySelector(".hero__arrow");
         logo.forEach((item => {
-            if (wimdowSize > tabletSize) item.removeAttribute("data-goto-header", "");
+            if (wimdowSize > tabletSize) {
+                item.removeAttribute("data-goto-header", "");
+                buttonHero.removeAttribute("data-goto-header", "");
+            }
         }));
         menuLink.forEach((item => {
-            if (wimdowSize > tabletSize) item.removeAttribute("data-goto-header", "");
+            if (wimdowSize > tabletSize) {
+                item.removeAttribute("data-goto-header", "");
+                buttonHero.removeAttribute("data-goto-header", "");
+            }
         }));
     }
     addAttributeHeader();
@@ -4410,7 +4420,7 @@
             },
             about: {
                 title: "About Me",
-                description: `<p>\n               My name is Andrii, and I'm a <span>Frontend Developer</span>. My specialization is\n               creating\n            < span > user - friendly\n                  and responsive</>\n         interfaces.My main goal is to continuously improve my skills and create projects that benefit\n               users.\n            </p >\n\n            <p>\n               I completed the "Freelancer for Life" course, where I gained basic knowledge in <span>HTML and\n                  CSS</span>.\n               During\n               the Web Star\n               courses, I acquired knowledge in <span>JavaScript</span>. I'm currently actively studying\n               <span>React</span>\n               and\n               improving\n               my\n               skills in\n               <span>responsive design</span>.\n            </p>\n\n            <p>\n               I always strive for perfection in my work and pay attention to detail. This allows me to create\n               high-quality products.\n            </p>\n\n            <p>\n               <span>If you are looking for a motivated and responsible developer, I would be happy to discuss\n                  potential\n                  collaboration.</span>\n            </p>`,
+                description: `<p>\n               My name is Andrii, and I'm a <span>Frontend Developer</span>. My specialization is\n               creating\n            <p span > user - friendly\n                  and responsive</p>\n         interfaces.My main goal is to continuously improve my skills and create projects that benefit\n               users.\n            </p >\n\n            <p>\n               I completed the "Freelancer for Life" course, where I gained basic knowledge in <span>HTML and\n                  CSS</span>.\n               During\n               the Web Star\n               courses, I acquired knowledge in <span>JavaScript</span>. I'm currently actively studying\n               <span>React</span>\n               and\n               improving\n               my\n               skills in\n               <span>responsive design</span>.\n            </p>\n\n            <p>\n               I always strive for perfection in my work and pay attention to detail. This allows me to create\n               high-quality products.\n            </p>\n\n            <p>\n               <span>If you are looking for a motivated and responsible developer, I would be happy to discuss\n                  potential\n                  collaboration.</span>\n            </p>`,
                 certificates: "Certificates"
             },
             skills: {
@@ -4428,6 +4438,7 @@
                 },
                 card: {
                     "live-preview": "Live Preview",
+                    "live-preview-git": "Live Preview on GitHub",
                     "view-code": "View Code"
                 },
                 "card-1": {
@@ -4441,6 +4452,10 @@
                 "card-3": {
                     title: "Sunnyside Agency",
                     content: `<p>Responsive landing-page with using VSCode and Figma</p>\n                                 <p>Simply Landing Page where users should be able to:\n\n                                    - View the optimal layout for the site depending on their device's screen\n                                    size\n                                    - See hover states for all interactive elements on the page</p>\n                                 <p class="card-projects__text text"><span>Tech stack:</span> HTML,\n                                    CSS</p>`
+                },
+                "card-4": {
+                    title: "Tax Residency Test",
+                    content: `<p>Website design and development for "Tax Residency Test"</p>\n\n<ul>\n  <li>Responsive layout for all device types</li>\n  <li>Moving logo from menu to Header using JavaScript</li>\n  <li>Moving button under image in Hero section</li>\n  <li>Using Swiper.js for Reviews Block</li>\n  <li>Creating Pop-up for button</li>\n  <li>Input and checkbox validation in Pop-up</li>\n  <li>Assigning payment links to Pop-up button depending on selected package</li>\n  <li>Creating scroll button</li>\n  <li>Using CSS Grid and CSS Flex</li>\n  <li>Worked with Gulp build template</li>\n  <li>Website deployment on Hosting Ukraine via adm.tools and FileZilla</li>\n</ul>\n\n<p>Additional work</p>\n\n<ul>\n  <li>Creating logic in SendPulse for sending messages after payment</li>\n  <li>Integrating WayForPay through button for service payments</li>\n  <li>Setting up Google Workspace mail</li>\n</ul>\n<p class="card-projects__text text"><span>Technologies:</span> HTML, CSS, JavaScript</p>`
                 }
             },
             blog: {
@@ -4476,6 +4491,11 @@
                 }
             },
             button: "Download My CV",
+            lang: {
+                button: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M2 11.385H31V13.231H2z"></path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M1 18.769H31V20.615H1z"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t</svg>`,
+                "option-1": `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<path d="M31,8c0-2.209-1.791-4-4-4H5c-2.209,0-4,1.791-4,4v9H31V8Z" fill="#2455b2"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,28H27c2.209,0,4-1.791,4-4v-8H1v8c0,2.209,1.791,4,4,4Z" fill="#f9da49"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M5,28H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4ZM2,8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n\t\t\t\t\t\t\t\t\t</svg>`,
+                "option-2": `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<path fill="#1435a1" d="M1 11H31V21H1z"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" fill="#fff"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z"\n\t\t\t\t\t\t\t\t\t\t\ttransform="rotate(180 16 24)" fill="#fff">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n\t\t\t\t\t\t\t\t\t</svg>`
+            },
             signature: `Designed and built by <span>Andrii Yakovliev</span> ❤️ 2024`
         },
         uk: {
@@ -4517,6 +4537,7 @@
                 },
                 card: {
                     "live-preview": "Огляд сайту",
+                    "live-preview-git": "Огляд сайту на GitHub",
                     "view-code": "Оглад коду"
                 },
                 "card-1": {
@@ -4530,6 +4551,10 @@
                 "card-3": {
                     title: "Агенція Sunnyside",
                     content: `<p>Адаптивна лендінг-сторінка з використанням VSCode та Figma</p>\n<p>Проста лендінг-сторінка, де користувачі можуть:\n\n   - Переглядати оптимальне розташування сайту в залежності від розміру екрана  пристрою\n   - Бачити стани при наведенні для всіх інтерактивних елементів на сторінці</p>\n<p class="card-projects__text text"><span>Технологічний стек:</span> HTML,\n   CSS</p>\n`
+                },
+                "card-4": {
+                    title: "Tax Residency Test",
+                    content: `<p>Дизайн та розробка сайту для "Tax Residency Test"</p>\n\n<ul>\n   <li>Адаптивна верстка для всіх типів присроїв</li>\n   <li>Переміщення логотипу з меню в Header за допомогою JavaScript</li>\n   <li>Переміщення кнопки під зображення в Hero</li>\n   <li>Використання Swiper.js для Блоку Відгуки</li>\n   <li>Створення Pop-up для кнопки</li>\n   <li>Валідація для input і checbox в Pop-up</li>\n   <li>Присвоєння посилань на оплату для кнопки в Pop-up, в залежності від обраного пакету</li>\n   <li>Створення кнопки прокрутки</li>\n   <li>Використання CSS Grid та CSS Flex</li>\n   <li>Працював із шаблоном збірки Gulp</li>\n   <li>Публікація сайту на Хостингу Ukraine через adm.tools і програму FilleZila</li>\n</ul>\n\n<p>Додаткові роботи</p>\n\n<ul>\n   <li>Створення логіки в SendPulse для відправки повідомлень після оплати</li>\n   <li>Підключення WayForPay через кнопку для оплати послуг</li>\n   <li>Налаштування пошти Workspace Google</li>\n</ul>\n<p class="card-projects__text text"><span>Технології:</span> HTML, CSS, JavaScript</p>`
                 }
             },
             blog: {
@@ -4543,7 +4568,7 @@
                 },
                 mail: {
                     title: "Мій email",
-                    content: `<p>andrii.yakovliev.frontend</p>\n\t\t\t\t\t\t\t<p>@gmail.com</p>`
+                    content: `<p> andrii.yakovliev.frontend</p>\n         <p>@gmail.com</p>`
                 },
                 phone: {
                     title: "Зателефонуйте мені",
@@ -4564,17 +4589,142 @@
                     title: "Збережіть мій контакт"
                 }
             },
-            button: "Завантажити моє резюму",
-            signature: `Дизайн та розробка <span>Андрій Яковлєв</span> ❤️ 2024`
+            button: "Завантажити моє резюме",
+            lang: {
+                button: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<path d="M31,8c0-2.209-1.791-4-4-4H5c-2.209,0-4,1.791-4,4v9H31V8Z" fill="#2455b2"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,28H27c2.209,0,4-1.791,4-4v-8H1v8c0,2.209,1.791,4,4,4Z" fill="#f9da49"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M5,28H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4ZM2,8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n\t\t\t\t\t\t\t\t\t</svg>`,
+                "option-1": `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M2 11.385H31V13.231H2z"></path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M1 18.769H31V20.615H1z"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#a62842">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path fill="#fff"\n\t\t\t\t\t\t\t\t\t\t\td="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t</svg>`,
+                "option-2": `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<path fill="#1435a1" d="M1 11H31V21H1z"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" fill="#fff"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z"\n\t\t\t\t\t\t\t\t\t\t\ttransform="rotate(180 16 24)" fill="#fff">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n                                 </svg>`
+            },
+            signature: `Дизайн та розробка<span>Андрій Яковлєв</span> ❤️ 2024`
+        },
+        ru: {
+            menu: {
+                home: "Главнаяя",
+                about: "О мнѣ",
+                skills: "Умѣнія",
+                projects: "Проэкты",
+                blog: "Блогъ",
+                contact: "Контактъ"
+            },
+            hero: {
+                title: {
+                    hi: "Доброго здоровья!",
+                    "my-name": "мене зовутъ",
+                    name: "Андрій Яковлєвъ",
+                    position: "Я - Frontend Раздѣлыватель"
+                },
+                "text-content": "Созиданіе интерфейсовъ, кои воплощаютъ идеи въ жизнь!"
+            },
+            about: {
+                title: "О мнѣ",
+                description: `<p>\n           Меня зовутъ Андрій, и я - <span>Frontend Раздѣлыватель</span>. Моя специализація - созданіе <span>user-любезныхъ\n              и приспособленныхъ</span>\n     интерфейсовъ. Моя главная цѣль - постоянно совершенствовать свои умѣнія, и созидать проэкты, кои приносятъ пользу пользователямъ.\n        </p>\n\n        <p>  \n           Я окончилъ курсъ "Freelancerъ по жизни", гдѣ получилъ базовыя знанія въ <span>HTML и CSS</span>.Во время курсовъ Web Star я освоилъ <span>JavaScript</span>. Нынѣ я активно изучаю <span>React</span> и улучшаю свои умѣнія въ <span>приспособленномъ дизайнѣ</span>.\n</p><p>\n           Я всегда стремлюсь къ совершенству въ своей работѣ и удѣляю вниманіе деталямъ. Сіе позволяетъ мнѣ созидать высококачественные продукты.\n        </p>\n\n        <p>\n           <span>Ежели вы ищете мотивированнаго и отвѣтственнаго раздѣлывателя, съ радостью обсужу возможное\n              сотрудничество.</span>\n        </p>`,
+                certificates: "Сертификаты"
+            },
+            skills: {
+                title: "Умѣнія",
+                "subtitle-work": "Дѣйствую съ",
+                "subtitle-progress": "Въ процессѣ изученія"
+            },
+            projects: {
+                title: "Проэкты",
+                tabs: {
+                    lp: "Односторонніе веб-сайты",
+                    components: "Компоненты",
+                    "multi-page": "Многостранные веб-сайты",
+                    courses: "Курсы"
+                },
+                card: {
+                    "live-preview": "Обзоръ сайта",
+                    "live-preview-git": "Обзоръ сайта на GitHub",
+                    "view-code": "Обзоръ кода"
+                },
+                "card-1": {
+                    title: "Портфолио Андрія Яковлѣва",
+                    content: `<p>Дизайнъ и раздѣлыванье портфолио Андрія Яковлѣва</p><ul>\n   <li>Перемѣна знака возлѣ уменыненія размѣра экрана</li>\n   <li>Перемѣщенье знака и значковъ соціальныхъ сѣтей изъ меню въ Header</li>\n   <li>Настраиванье языка и цвѣтовой схемы для сайта</li>\n   <li>Реализація эффекта печатанія текста на главной странице</li>\n   <li>Преобразованіе изображеній въ слайдеръ при помощи Swiper.js</li>\n   <li>Созданіе вкладочнаго меню для проэктовъ</li>\n   <li>Интеграція блога съ LinkedIn</li>\n   <li>Настраиванье формы отправки при помощи Email.js</li>\n   <li>Функція загруженія резюме</li>\n   <li>Приспособленный дизайнъ для компьютера, планшета и мобильныхъ устройствъ</li>\n   <li>Употребленіе CSS Grid и CSS Flex</li>\n   <li>Работалъ съ шаблономъ сборки Gulp</li>\n</ul>\n<p class="card-projects__text text"><span>Технологіи:</span> HTML, CSS, JavaScript</p>`
+                },
+                "card-2": {
+                    title: "Skilled",
+                    content: `<p>Приспособленная лендингъ-страница съ употребленіемъ VSCode и Figma</p><p>Задача состоитъ въ томъ, чтобы созидать сію лендингъ-страницу и максимально приблизить ее къ дизайну.\nПользователи должны имѣть возможность:\nПросматривать оптимальное размѣщенье въ зависимости отъ размѣра экрана ихнихъ устройствъ\nВидѣть состоянье наведенія для интерактивныхъ элементовъ</p>\n<p>\nРеализація:\nЯ созидалъ лендингъ-страницу, употребляя CSS Grid и CSS Flex. Приспособленный\nдизайнъ съ постояннымъ перемѣщеніемъ изображенія и\nперемѣной изображенія при просмотрѣ на мобильномъ телефонѣ (реализовано при помощи\nJavaScript). Плавная приспособленность всѣхъ элементовъ, шрифтовъ\nи отступовъ при измѣненія размѣра экрана.</p>\n<p class="card-projects__text text"><span>Технологическій составъ:</span> HTML,\nCSS</p>\n`
+                },
+                "card-3": {
+                    title: "Агентство Sunnyside",
+                    content: `<p>Приспособленная лендингъ-страница съ употребленіемъ VSCode и Figma</p><p>Простая лендингъ-страница, гдѣ пользователи могутъ:\n\nПросматривать оптимальное размѣщеніе сайта въ зависимости отъ размѣра экрана  устройства\nВидѣть состоянія при наведеніи для всѣхъ интерактивныхъ элементовъ на странице</p>\n\n<p class="card-projects__text text"><span>Технологическій составъ:</span> HTML,\n   CSS</p>\n`
+                },
+                "card-4": {
+                    title: "Tax Residency Test",
+                    content: `<p>Дизайнъ и раздѣлыванье сайта для "Налоговое Резидентное Испытаніе"</p>\n<ul>\n   <li>Приспособленная вёрстка для всѣхъ типовъ устройствъ</li>\n   <li>Перемѣщеніе знака съ меню въ Header при помощи JavaScript</li>\n   <li>Перемѣщеніе кнопки подъ изображеніе въ Hero</li>\n   <li>Употребленіе Swiper.js для Блока Отзывы</li>\n   <li>Созданіе Pop-up для кнопки</li>\n   <li>Валидація для input и checkbox въ Pop-up</li>\n   <li>Присваиваніе ссылокъ на оплату для кнопки въ Pop-up, въ зависимости отъ избраннаго пакета</li>\n   <li>Созданіе кнопки прокрутки</li>\n   <li>Употребленіе CSS Grid и CSS Flex</li>\n   <li>Работалъ съ шаблономъ сборки Gulp</li>\n   <li>Публикація сайта на Хостинге Ukraine чрезъ adm.tools и программу FilleZila</li>\n</ul>\n<p>Дополнительныя работы</p>\n<ul>\n   <li>Созданіе логики въ SendPulse для отправки сообщеній послѣ оплаты</li>\n   <li>Подключеніе WayForPay чрезъ кнопку для оплаты услугъ</li>\n   <li>Настраиванье почты Workspace Google</li>\n</ul>\n<p class="card-projects__text text"><span>Технологіи:</span> HTML, CSS, JavaScript</p>`
+                }
+            },
+            blog: {
+                title: "Блогъ"
+            },
+            footer: {
+                title: "Свяжитесь со мной",
+                address: {
+                    title: "Локація",
+                    content: "Украина, Кіевъ, Оболонскій районъ"
+                },
+                mail: {
+                    title: "Моя электронная почта",
+                    content: `<p> andrii.yakovliev.frontend</p>\n     <p>@gmail.com</p>`
+                },
+                phone: {
+                    title: "Позвоните мнѣ",
+                    content: "+380 67 584 94 09"
+                },
+                form: {
+                    title: "Давайте поговоримъ",
+                    name: "Имя*",
+                    mail: "Электронная почта*",
+                    phone: "Номеръ телефона",
+                    message: "Сообщеніе*",
+                    success: "Ваше сообщеніе успѣшно отправлено!",
+                    send: "ОТПРАВИТЬ",
+                    cancel: "ОТМѢНИТЬ",
+                    required: "* - обязательно"
+                },
+                contact: {
+                    title: "Сохраните мой контактъ"
+                }
+            },
+            button: "Загрузить моё резюме",
+            lang: {
+                button: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">\n\t\t\t\t\t\t\t\t\t\t<path fill="#1435a1" d="M1 11H31V21H1z"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" fill="#fff"></path>\n\t\t\t\t\t\t\t\t\t\t<path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z"\n\t\t\t\t\t\t\t\t\t\t\ttransform="rotate(180 16 24)" fill="#fff">\n\t\t\t\t\t\t\t\t\t\t</path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z"\n\t\t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n\t\t\t\t\t\t\t\t\t\t<path\n\t\t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n\t\t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n                                 </svg>`,
+                "option-2": `<svg svg xmlns = "http://www.w3.org/2000/svg" width = "32" height = "32" viewBox = "0 0 32 32" >\n   \t\t\t\t\t\t\t\t\t<rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#fff"></rect>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M1.638,5.846H30.362c-.711-1.108-1.947-1.846-3.362-1.846H5c-1.414,0-2.65,.738-3.362,1.846Z"\n   \t\t\t\t\t\t\t\t\t\tfill="#a62842">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M2.03,7.692c-.008,.103-.03,.202-.03,.308v1.539H31v-1.539c0-.105-.022-.204-.03-.308H2.03Z"\n   \t\t\t\t\t\t\t\t\t\tfill="#a62842">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M2 11.385H31V13.231H2z"></path>\n   \t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M2 15.077H31V16.923000000000002H2z"></path>\n   \t\t\t\t\t\t\t\t\t<path fill="#a62842" d="M1 18.769H31V20.615H1z"></path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M1,24c0,.105,.023,.204,.031,.308H30.969c.008-.103,.031-.202,.031-.308v-1.539H1v1.539Z"\n   \t\t\t\t\t\t\t\t\t\tfill="#a62842">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M30.362,26.154H1.638c.711,1.108,1.947,1.846,3.362,1.846H27c1.414,0,2.65-.738,3.362-1.846Z"\n   \t\t\t\t\t\t\t\t\t\tfill="#a62842">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path d="M5,4h11v12.923H1V8c0-2.208,1.792-4,4-4Z" fill="#102d5e"></path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z"\n   \t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n   \t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M4.601 7.463L5.193 7.033 4.462 7.033 4.236 6.338 4.01 7.033 3.279 7.033 3.87 7.463 3.644 8.158 4.236 7.729 4.827 8.158 4.601 7.463z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M7.58 7.463L8.172 7.033 7.441 7.033 7.215 6.338 6.989 7.033 6.258 7.033 6.849 7.463 6.623 8.158 7.215 7.729 7.806 8.158 7.58 7.463z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M10.56 7.463L11.151 7.033 10.42 7.033 10.194 6.338 9.968 7.033 9.237 7.033 9.828 7.463 9.603 8.158 10.194 7.729 10.785 8.158 10.56 7.463z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M6.066 9.283L6.658 8.854 5.927 8.854 5.701 8.158 5.475 8.854 4.744 8.854 5.335 9.283 5.109 9.979 5.701 9.549 6.292 9.979 6.066 9.283z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M9.046 9.283L9.637 8.854 8.906 8.854 8.68 8.158 8.454 8.854 7.723 8.854 8.314 9.283 8.089 9.979 8.68 9.549 9.271 9.979 9.046 9.283z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M12.025 9.283L12.616 8.854 11.885 8.854 11.659 8.158 11.433 8.854 10.702 8.854 11.294 9.283 11.068 9.979 11.659 9.549 12.251 9.979 12.025 9.283z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M6.066 12.924L6.658 12.494 5.927 12.494 5.701 11.799 5.475 12.494 4.744 12.494 5.335 12.924 5.109 13.619 5.701 13.19 6.292 13.619 6.066 12.924z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M9.046 12.924L9.637 12.494 8.906 12.494 8.68 11.799 8.454 12.494 7.723 12.494 8.314 12.924 8.089 13.619 8.68 13.19 9.271 13.619 9.046 12.924z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M12.025 12.924L12.616 12.494 11.885 12.494 11.659 11.799 11.433 12.494 10.702 12.494 11.294 12.924 11.068 13.619 11.659 13.19 12.251 13.619 12.025 12.924z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M13.539 7.463L14.13 7.033 13.399 7.033 13.173 6.338 12.947 7.033 12.216 7.033 12.808 7.463 12.582 8.158 13.173 7.729 13.765 8.158 13.539 7.463z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M4.601 11.104L5.193 10.674 4.462 10.674 4.236 9.979 4.01 10.674 3.279 10.674 3.87 11.104 3.644 11.799 4.236 11.369 4.827 11.799 4.601 11.104z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M7.58 11.104L8.172 10.674 7.441 10.674 7.215 9.979 6.989 10.674 6.258 10.674 6.849 11.104 6.623 11.799 7.215 11.369 7.806 11.799 7.58 11.104z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M10.56 11.104L11.151 10.674 10.42 10.674 10.194 9.979 9.968 10.674 9.237 10.674 9.828 11.104 9.603 11.799 10.194 11.369 10.785 11.799 10.56 11.104z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M13.539 11.104L14.13 10.674 13.399 10.674 13.173 9.979 12.947 10.674 12.216 10.674 12.808 11.104 12.582 11.799 13.173 11.369 13.765 11.799 13.539 11.104z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M4.601 14.744L5.193 14.315 4.462 14.315 4.236 13.619 4.01 14.315 3.279 14.315 3.87 14.744 3.644 15.44 4.236 15.01 4.827 15.44 4.601 14.744z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M7.58 14.744L8.172 14.315 7.441 14.315 7.215 13.619 6.989 14.315 6.258 14.315 6.849 14.744 6.623 15.44 7.215 15.01 7.806 15.44 7.58 14.744z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M10.56 14.744L11.151 14.315 10.42 14.315 10.194 13.619 9.968 14.315 9.237 14.315 9.828 14.744 9.603 15.44 10.194 15.01 10.785 15.44 10.56 14.744z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t\t<path fill="#fff"\n   \t\t\t\t\t\t\t\t\t\td="M13.539 14.744L14.13 14.315 13.399 14.315 13.173 13.619 12.947 14.315 12.216 14.315 12.808 14.744 12.582 15.44 13.173 15.01 13.765 15.44 13.539 14.744z">\n   \t\t\t\t\t\t\t\t\t</path>\n   \t\t\t\t\t\t\t\t</svg > `,
+                "option-1": `<svg svg xmlns = "http://www.w3.org/2000/svg" width = "32" height = "32" viewBox = "0 0 32 32" >\n   \t\t\t\t\t\t\t\t\t<path d="M31,8c0-2.209-1.791-4-4-4H5c-2.209,0-4,1.791-4,4v9H31V8Z" fill="#2455b2"></path>\n   \t\t\t\t\t\t\t\t\t<path d="M5,28H27c2.209,0,4-1.791,4-4v-8H1v8c0,2.209,1.791,4,4,4Z" fill="#f9da49"></path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M5,28H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4ZM2,8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8Z"\n   \t\t\t\t\t\t\t\t\t\topacity=".15"></path>\n   \t\t\t\t\t\t\t\t\t<path\n   \t\t\t\t\t\t\t\t\t\td="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z"\n   \t\t\t\t\t\t\t\t\t\tfill="#fff" opacity=".2"></path>\n   \t\t\t\t\t\t\t\t</svg > `
+            }
         }
     };
-    const currentLang = "uk";
-    const enBtn = document.querySelector('[data-flag="en"]');
-    const ukBtn = document.querySelector('[data-flag="ua"]');
+    let currentLang = localStorage.getItem("language") || getDeviceLanguage();
+    document.documentElement.lang = currentLang;
+    const languageButton = document.querySelector(".language-mode__button a");
+    const dropdownButton = document.querySelector(".language-mode__button");
+    const dropdownContent = document.querySelector(".language-mode__content");
+    const langOption1 = document.querySelector('[data-content="lang.option-1"]');
+    const langOption2 = document.querySelector('[data-content="lang.option-2"]');
+    function handleLanguageChange(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        localStorage.setItem("language", lang);
+        updateLanguageButton(currentLang);
+        changeLanguage();
+        updateImage();
+    }
+    function setupLanguageChangeListener(element) {
+        element.addEventListener("click", (() => {
+            const lang = element.getAttribute("data-flag");
+            handleLanguageChange(lang);
+        }));
+    }
+    setupLanguageChangeListener(langOption1);
+    setupLanguageChangeListener(langOption2);
+    function getDeviceLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
     function changeLanguage() {
-        const elements = document.querySelectorAll("[data-text]");
+        const elements = document.querySelectorAll("[data-content]");
         elements.forEach((element => {
-            const key = element.getAttribute([ "data-text" ]);
+            const key = element.getAttribute("data-content");
             const keys = key.split(".");
             let textValue = texts[currentLang];
             keys.forEach((k => {
@@ -4583,10 +4733,56 @@
             element.innerHTML = textValue;
         }));
     }
+    function updateLanguageButton(currentLang) {
+        document.querySelector(".page");
+        languageButton.setAttribute("data-flag", currentLang);
+        if (currentLang === "uk") {
+            langOption1.setAttribute("data-flag", "en");
+            langOption2.setAttribute("data-flag", "ru");
+        } else if (currentLang === "en") {
+            langOption1.setAttribute("data-flag", "uk");
+            langOption2.setAttribute("data-flag", "ru");
+        } else if (currentLang === "ru") {
+            langOption1.setAttribute("data-flag", "uk");
+            langOption2.setAttribute("data-flag", "en");
+        }
+    }
+    function updateImage() {
+        const certificateImage = document.querySelector("#certificate-ffl");
+        const cvHrefs = document.querySelectorAll(".cv__button");
+        const lang = document.documentElement.lang;
+        if (certificateImage) certificateImage.src = `img/about/certificates/01-fp.${lang}.png`; else console.log("Element #certificate-ffl not found");
+        cvHrefs.forEach((cvHref => {
+            if (cvHref) cvHref.href = `data/Andrii-Yakovliev-CV.${lang}.pdf`;
+        }));
+    }
+    document.querySelectorAll(".language-mode__button a").forEach((link => {
+        link.addEventListener("click", (e => {
+            e.preventDefault();
+            handleLanguageChange(link.dataset.flag);
+        }));
+    }));
+    updateLanguageButton(currentLang);
     changeLanguage();
-    console.log(currentLang);
-    console.log(enBtn);
-    console.log(ukBtn);
+    updateImage();
+    dropdownButton.addEventListener("click", (function(event) {
+        event.stopPropagation();
+        if (dropdownContent.style.display === "block") dropdownContent.style.display = "none"; else dropdownContent.style.display = "block";
+    }));
+    dropdownButton.addEventListener("mouseenter", (function() {
+        dropdownContent.style.display = "block";
+    }));
+    dropdownButton.addEventListener("mouseleave", (function() {
+        setTimeout((() => {
+            if (!dropdownContent.matches(":hover")) dropdownContent.style.display = "none";
+        }), 200);
+    }));
+    dropdownContent.addEventListener("mouseleave", (function() {
+        dropdownContent.style.display = "none";
+    }));
+    window.addEventListener("click", (function(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) dropdownContent.style.display = "none";
+    }));
     window["FLS"] = true;
     menuInit();
     tabs();
