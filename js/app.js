@@ -4767,18 +4767,7 @@
     updateImage();
     dropdownButton.addEventListener("click", (function(event) {
         event.stopPropagation();
-        if (dropdownContent.style.display === "block") dropdownContent.style.display = "none"; else dropdownContent.style.display = "block";
-    }));
-    dropdownButton.addEventListener("mouseenter", (function() {
-        dropdownContent.style.display = "block";
-    }));
-    dropdownButton.addEventListener("mouseleave", (function() {
-        setTimeout((() => {
-            if (!dropdownContent.matches(":hover")) dropdownContent.style.display = "none";
-        }), 200);
-    }));
-    dropdownContent.addEventListener("mouseleave", (function() {
-        dropdownContent.style.display = "none";
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
     }));
     window.addEventListener("click", (function(event) {
         if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) dropdownContent.style.display = "none";
