@@ -4277,7 +4277,9 @@
             const currentLang = document.documentElement.lang;
             const theme = darkTheme ? "dark" : "light";
             const lang = currentLang;
+            const gitHubImg = document.querySelector("#github-img");
             qrCodeImage.src = `img/footer/qr-code/qrcode-${theme}-${lang}.svg`;
+            gitHubImg.src = `img/icons/skills/github-fill.${theme}.svg`;
         };
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme) applyTheme(savedTheme); else {
@@ -4739,9 +4741,23 @@
         const certificateImage = document.querySelector("#certificate-ffl");
         const vcardHrefs = document.querySelectorAll(".footer__qr-code-link");
         const lang = document.documentElement.lang;
-        if (certificateImage) certificateImage.src = `img/about/certificates/01-fp.${lang}.png`; else console.log("Element #certificate-ffl not found");
+        if (certificateImage) {
+            const imageFormats = [ "webp", "png", "jpg", "jpeg" ];
+            let imageFound = false;
+            for (const format of imageFormats) {
+                const imgPath = `img/about/certificates/01-fp.${lang}.${format}`;
+                const img = new Image;
+                img.src = imgPath;
+                img.onload = () => {
+                    if (!imageFound) {
+                        certificateImage.src = imgPath;
+                        imageFound = true;
+                    }
+                };
+            }
+        }
         vcardHrefs.forEach((vcardHref => {
-            vcardHref.href = `data/data/contact.en.${lang}.vcf`;
+            vcardHref.href = `data/data/contact.${lang}.vcf`;
         }));
     }
     document.querySelectorAll(".language-mode__button a").forEach((link => {
