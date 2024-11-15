@@ -4271,16 +4271,7 @@
             }
             updateImage();
         };
-        const updateImage = () => {
-            const qrCodeImage = document.querySelector(".footer__qr-code-image");
-            const darkTheme = document.body.classList.contains("dark-theme");
-            const currentLang = document.documentElement.lang;
-            const theme = darkTheme ? "dark" : "light";
-            const lang = currentLang;
-            const gitHubImg = document.querySelector("#github-img");
-            qrCodeImage.src = `img/footer/qr-code/qrcode-${theme}-${lang}.svg`;
-            gitHubImg.src = `img/icons/skills/github-fill.${theme}.svg`;
-        };
+        const updateImage = () => {};
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme) applyTheme(savedTheme); else {
             const checkSystemTheme = () => {
@@ -4738,28 +4729,38 @@
         }
     }
     function updateImage() {
+        const darkTheme = document.body.classList.contains("dark-theme");
+        const currentLang = document.documentElement.lang;
+        const theme = darkTheme ? "dark" : "light";
+        document.querySelector(".footer__qr-code-image").src = `img/footer/qr-code/qrcode-${theme}-${currentLang}.svg`;
+        document.querySelector("#github-img").src = `img/icons/skills/github-fill.${theme}.svg`;
         const certificateImage = document.querySelector("#certificate-ffl");
-        const vcardHrefs = document.querySelectorAll(".footer__qr-code-link");
-        const lang = document.documentElement.lang;
         if (certificateImage) {
             const imageFormats = [ "webp", "png", "jpg", "jpeg" ];
-            let imageFound = false;
-            for (const format of imageFormats) {
-                const imgPath = `img/about/certificates/01-fp.${lang}.${format}`;
+            imageFormats.some((format => {
+                const imgPath = `img/about/certificates/01-fp.${currentLang}.${format}`;
                 const img = new Image;
                 img.src = imgPath;
                 img.onload = () => {
-                    if (!imageFound) {
-                        certificateImage.src = imgPath;
-                        imageFound = true;
-                    }
+                    certificateImage.src = imgPath;
                 };
-            }
+                return img.complete;
+            }));
         }
-        vcardHrefs.forEach((vcardHref => {
-            vcardHref.href = `data/vcard.${lang}.vcf`;
+        document.querySelectorAll(".footer__qr-code-link").forEach((vcardHref => {
+            vcardHref.href = `data/vcard.${currentLang}.vcf`;
         }));
     }
+    const themeObserver = new MutationObserver(updateImage);
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: [ "class" ]
+    });
+    const langObserver = new MutationObserver(updateImage);
+    langObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: [ "lang" ]
+    });
     document.querySelectorAll(".language-mode__button a").forEach((link => {
         link.addEventListener("click", (e => {
             e.preventDefault();
