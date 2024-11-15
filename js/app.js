@@ -4365,23 +4365,10 @@
         }));
     }));
     function addAttributeHeader() {
-        const logo = document.querySelectorAll(".menu__logo");
-        const menuLink = document.querySelectorAll(".menu__link");
+        const elements = [ ...document.querySelectorAll(".menu__logo"), ...document.querySelectorAll(".menu__link"), ...document.querySelectorAll(".hero__arrow") ];
         const tabletSize = 1023.98;
-        const wimdowSize = window.innerWidth;
-        const buttonHero = document.querySelector(".hero__arrow");
-        logo.forEach((item => {
-            if (wimdowSize > tabletSize) {
-                item.removeAttribute("data-goto-header", "");
-                buttonHero.removeAttribute("data-goto-header", "");
-            }
-        }));
-        menuLink.forEach((item => {
-            if (wimdowSize > tabletSize) {
-                item.removeAttribute("data-goto-header", "");
-                buttonHero.removeAttribute("data-goto-header", "");
-            }
-        }));
+        const windowSize = window.innerWidth;
+        if (windowSize > tabletSize) elements.forEach((item => item.removeAttribute("data-goto-top")));
     }
     addAttributeHeader();
     window.addEventListener("scroll", (() => {
@@ -4598,8 +4585,9 @@
             signature: `Дизайн та розробка<span>Андрій Яковлєв</span> ❤️ 2024`
         },
         ru: {
+            title: "Андрий Яковлев",
             menu: {
-                home: "Главнаяя",
+                home: "Главная",
                 about: "О мнѣ",
                 skills: "Умѣнія",
                 projects: "Проэкты",
@@ -4749,11 +4737,11 @@
     }
     function updateImage() {
         const certificateImage = document.querySelector("#certificate-ffl");
-        const cvHrefs = document.querySelectorAll(".cv__button");
+        const vcardHrefs = document.querySelectorAll(".footer__qr-code-link");
         const lang = document.documentElement.lang;
         if (certificateImage) certificateImage.src = `img/about/certificates/01-fp.${lang}.png`; else console.log("Element #certificate-ffl not found");
-        cvHrefs.forEach((cvHref => {
-            if (cvHref) cvHref.href = `data/Andrii-Yakovliev-CV.${lang}.pdf`;
+        vcardHrefs.forEach((vcardHref => {
+            vcardHref.href = `data/data/contact.en.${lang}.vcf`;
         }));
     }
     document.querySelectorAll(".language-mode__button a").forEach((link => {
