@@ -4757,7 +4757,7 @@
             }
         }
         vcardHrefs.forEach((vcardHref => {
-            vcardHref.href = `data/contact.${lang}.vcf`;
+            vcardHref.href = `data/vcard.${lang}.vcf`;
         }));
     }
     document.querySelectorAll(".language-mode__button a").forEach((link => {
