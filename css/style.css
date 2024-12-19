@@ -1257,6 +1257,9 @@ body {
   letter-spacing: .5px;
   color: var(--title-color)
 }
+.title--main {
+  font-size: clamp(24px,6vmin,48px)
+}
 .title--section {
   text-align: center
 }
@@ -2188,7 +2191,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 100%;
   width: 1038px;
   max-width: 100%
@@ -2429,9 +2432,6 @@ body {
   .page .apply-margins {
     padding-bottom: 3.75rem
   }
-  .title--main {
-    font-size: 3rem
-  }
   .title--section {
     font-size: 2.25rem
   }
@@ -2451,9 +2451,6 @@ body {
     margin-bottom: 2rem
   }
   .text {
-    font-size: 1.125rem
-  }
-  .text--menu {
     font-size: 1.125rem
   }
   .text--footer {
@@ -2493,10 +2490,7 @@ body {
     padding-top: 5.625rem
   }
   .hero__container {
-    padding-bottom: 2.5rem
-  }
-  .hero__container {
-    gap: 1.25rem
+    padding-bottom: .625rem
   }
   .hero__title {
     gap: .625rem
@@ -2536,6 +2530,11 @@ body {
     column-gap: 1.875rem
   }
 }
+@media (min-width:90em) {
+  .text--menu {
+    font-size: 1.125rem
+  }
+}
 @media (max-width:767.98px) {
   .swiper-wrapper {
     width: 100%;
@@ -2556,6 +2555,51 @@ body {
   }
 }
 @media (max-width:77.31125em) {
+  .header__hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+  }
+}
+@media (max-width:63.99875em) {
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+  }
+  .menu__body {
+    position: fixed;
+    width: 50%;
+    height: 100%;
+    right: -100%;
+    top: 0;
+    overflow: auto;
+    backdrop-filter: blur(80px);
+    background: var(--background-color);
+    opacity: .95;
+    transition: right .5s;
+    padding: 2.5rem .9375rem 0 .9375rem;
+    flex-direction: column;
+    justify-content: space-around
+  }
+  .menu-open .menu__body {
+    right: 0
+  }
+  .menu-open .menu__body::before {
+    right: 0
+  }
+  .menu__list {
+    flex-direction: column
+  }
+  .menu__switchers {
+    padding-bottom: 5rem
+  }
   .icon-menu {
     display: block;
     position: relative;
@@ -2596,58 +2640,11 @@ body {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg)
   }
-}
-@media (max-width:77.31125em)and (any-hover:none) {
-  .icon-menu {
-    cursor: default
-  }
-}
-@media (max-width:63.99875em) {
-  .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%
-  }
-  .menu__body {
-    position: fixed;
-    width: 50%;
-    height: 100%;
-    right: -100%;
-    top: 0;
-    overflow: auto;
-    backdrop-filter: blur(80px);
-    background: var(--background-color);
-    opacity: .95;
-    transition: right .5s;
-    padding: 2.5rem .9375rem 0 .9375rem;
-    flex-direction: column;
-    justify-content: space-around
-  }
-  .menu-open .menu__body {
-    right: 0
-  }
-  .menu-open .menu__body::before {
-    right: 0
-  }
-  .menu__list {
-    flex-direction: column
-  }
-  .menu__switchers {
-    padding-bottom: 5rem
-  }
   .home-button {
     display: none
   }
-  .header__hero {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--background-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center
+  .text--menu {
+    font-size: 1.5rem
   }
   .footer__container {
     display: flex;
@@ -2672,6 +2669,11 @@ body {
 @media (max-width:63.99875em)and (max-width:22.5em) {
   .menu__list {
     row-gap: 1.5rem
+  }
+}
+@media (max-width:63.99875em)and (any-hover:none) {
+  .icon-menu {
+    cursor: default
   }
 }
 @media (max-width:47.99875em) {
@@ -2766,9 +2768,6 @@ body {
   .page .apply-margins {
     padding-bottom: 2.5rem
   }
-  .title--main {
-    font-size: 2rem
-  }
   .title--section {
     font-size: 1.75rem
   }
@@ -2789,9 +2788,6 @@ body {
   }
   .text {
     font-size: 1rem
-  }
-  .text--menu {
-    font-size: 1.5rem
   }
   .text--footer {
     font-size: .875rem
@@ -2831,9 +2827,6 @@ body {
   }
   .hero__container {
     padding-bottom: 1.875rem
-  }
-  .hero__container {
-    gap: 2.5rem
   }
   .hero__title {
     gap: .3125rem
@@ -2886,9 +2879,6 @@ body {
   .page .apply-margins {
     padding-bottom: clamp(2.5rem ,1.8607954545rem + 2.8409090909vw ,3.75rem)
   }
-  .title--main {
-    font-size: clamp(2rem ,1.4886363636rem + 2.2727272727vw ,3rem)
-  }
   .title--section {
     font-size: clamp(1.75rem ,1.4943181818rem + 1.1363636364vw ,2.25rem)
   }
@@ -2909,9 +2899,6 @@ body {
   }
   .text {
     font-size: clamp(1rem ,.9360795455rem + .2840909091vw ,1.125rem)
-  }
-  .text--menu {
-    font-size: clamp(1.125rem ,1.6917613636rem + -.8522727273vw ,1.5rem)
   }
   .text--footer {
     font-size: clamp(.875rem ,.8110795455rem + .2840909091vw ,1rem)
@@ -2950,10 +2937,7 @@ body {
     padding-top: clamp(4.375rem ,3.7357954545rem + 2.8409090909vw ,5.625rem)
   }
   .hero__container {
-    padding-bottom: clamp(1.875rem ,1.5553977273rem + 1.4204545455vw ,2.5rem)
-  }
-  .hero__container {
-    gap: clamp(1.25rem ,3.1392045455rem + -2.8409090909vw ,2.5rem)
+    padding-bottom: clamp(.625rem ,2.5142045455rem + -2.8409090909vw ,1.875rem)
   }
   .hero__title {
     gap: clamp(.3125rem ,.1526988636rem + .7102272727vw ,.625rem)
@@ -3004,6 +2988,11 @@ body {
   }
   [class*=__container] {
     padding-left: clamp(1.5rem ,.5458524173rem + 4.0712468193vw ,2.5rem)
+  }
+}
+@media (min-width:63.99875em)and (max-width:90em) {
+  .text--menu {
+    font-size: clamp(1.125rem ,2.4230145185rem + -1.4422383539vw ,1.5rem)
   }
 }
 @media (min-width:22.49875em)and (max-width:89.99875em) {

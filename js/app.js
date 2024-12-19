@@ -4518,7 +4518,7 @@
                 card: {
                     "live-preview": "Огляд сайту",
                     "live-preview-git": "Огляд сайту на GitHub",
-                    "view-code": "Оглад коду"
+                    "view-code": "Огляд коду"
                 },
                 "card-1": {
                     title: "Портфоліо Андрія Яковлєва",
