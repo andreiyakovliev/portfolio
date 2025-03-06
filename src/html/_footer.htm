@@ -1,0 +1,131 @@
+<footer class="footer">
+	<div class="footer__container text-footer">
+		<h2 class="footer__title title title--section"><span data-content="footer.title">Get in Touch</span></h2>
+		<div class="footer__contacts">
+			<div class="footer__address">
+				<div class="footer__address-wrapper">
+					<div class="footer__address-item">
+						<div class="footer__address-icon"><span class="material-symbols-outlined">
+								person_pin_circle
+							</span></div>
+						<div class="footer__address-title" data-content="footer.address.title">Location</div>
+						<div class="footer__address-text" data-content="footer.address.content">Ukraine, Kyiv, Obolonsky
+							district
+						</div>
+					</div>
+				</div>
+				<div class="footer__address-wrapper">
+					<a href="mailto:andrii.yakovliev.frontend@gmail.com" class="footer__address-item">
+						<div class="footer__address-icon"><span class="material-symbols-outlined">mail</span></div>
+						<div class="footer__address-title" data-content="footer.mail.title">My email</div>
+						<div id="emailToCopy" class="footer__address-text" data-content="footer.mail.content">
+							<p>andrii.yakovliev.dev</p>
+							<p>@gmail.com</p>
+						</div>
+
+					</a>
+					<button id="copyEmailButton">
+						<span class="material-symbols-outlined" id="emailIcon">content_copy</span>
+					</button>
+				</div>
+
+				<div class="footer__address-wrapper">
+					<a href="tel:+380675849409" class="footer__address-item">
+						<div class="footer__address-icon"><span class="material-symbols-outlined">call</span></div>
+						<div class="footer__address-title" data-content="footer.phone.title">Call me now</div>
+						<div id="phoneToCopy" class="footer__address-text" data-content="footer.phone.content">+380 67 584 94
+							09
+						</div>
+					</a>
+					<button id="copyPhoneButton">
+						<span class="material-symbols-outlined" id="phoneIcon">content_copy</span>
+					</button>
+				</div>
+			</div>
+			<div class="footer__social-icons social-icons">
+				<a href="https://www.linkedin.com/in/andrii-yakovliev" class="social-icon social-icon--linkedin"
+					target="_blank"><i class="fi fi-brands-linkedin"></i></a>
+				<a href="https://github.com/andreiyakovliev" class="social-icon social-icon--github" target="_blank"><i
+						class="fi fi-brands-github"></i></a>
+				<a href="https://www.upwork.com/freelancers/~01a75a9a5d09ef15a6" class="social-icon social-icon--upwork"
+					target="_blank"><i class="fa-brands fa-upwork"></i></a>
+				<a href="https://www.facebook.com/andrii.yakovliev/" class="social-icon social-icon--facebook"
+					target="_blank"><i class="fi fi-brands-facebook"></i></a>
+				<a href="https://www.instagram.com/andrei.yakovliev/" class="social-icon social-icon--instagram"
+					target="_blank"><i class="fi fi-brands-instagram"></i></a>
+				<a href="https://t.me/andreiyakovliev" class="social-icon social-icon--telegram" target="_blank"><i
+						class="fi fi-brands-telegram"></i></a>
+				<a href="https://wa.me/380675849409" class="social-icon social-icon--whatsapp"><i
+						class="fi fi-brands-whatsapp" target="_blank"></i></a>
+			</div>
+		</div>
+		<div class="footer__form">
+			<div class="footer__form-item">
+				<form id="contactForm" class="footer__form-form">
+					<h4 class="footer__form-title title title--subtitle"><span data-content="footer.form.title">Let's
+							talk</span> 😊</h4>
+					<div class="footer__form-group">
+						<input class="footer__form-control" type="text" name="name" required>
+						<label data-content="footer.form.name">Name*</label>
+					</div>
+					<div class="footer__form-group">
+						<input class="footer__form-control" type="email" name="email" required>
+						<label data-content="footer.form.mail">Email*</label>
+					</div>
+					<div class="footer__form-group">
+						<input class="footer__form-control" type="tel" name="phone" id="phone" required>
+						<label data-content="footer.form.phone">Phone number</label>
+					</div>
+					<div class="footer__form-group message">
+						<textarea class="footer__form-control" name="message" data-autoheight required></textarea>
+						<label data-content="footer.form.message">Message*</label>
+					</div>
+					<div class="footer__form-group access" id="formSuccess">
+						<span class="material-symbols-outlined">
+							mark_email_read
+						</span> <!-- Велика галочка -->
+						<p data-content="footer.form.success">Your message has been sent!</p>
+					</div>
+					<div class="footer__form-group buttons">
+						<button type="submit" class="footer__form-button" data-content="footer.form.send">SEND</button>
+						<button type="reset" class="footer__form-button footer__form-button--cancel"
+							data-content="footer.form.cancel">CANCEL</button>
+					</div>
+				</form>
+				<p class="footer__form-anotation" data-content="footer.form.required">
+					* - required
+				</p>
+			</div>
+		</div>
+		<div class="footer__qr-code">
+			<h4 class="footer__qr-code-title title title--subtitle"><span data-content="footer.contact.title">Save my
+					contact</span></h4>
+			<a class="footer__qr-code-link" target="_blank" href="data/contact.en.vcf" download="andriiyakovliev.vcf">
+				<img src="@img/footer/qr-code/qrcode-dark-uk.svg" class="footer__qr-code-image" alt="QR-Code">
+			</a>
+		</div>
+		<a href="data/CV_Andrii-Yakovliev_Frontend.pdf" class="footer__button button cv__button"
+			download="CV_Andrii-Yakovliev_Frontend.pdf">
+			<span data-content="button">Download My CV</span>
+		</a>
+		<div class="footer__menu-body">
+			<ul class="footer__menu-list menu__list text">
+				<li class="menu__item"><a href="#" data-goto=".header" class="menu__link" data-content="menu.home">Home</a>
+				</li>
+				<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".about"
+						data-content="menu.about">About Me</a></li>
+				<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".skills"
+						data-content="menu.skills">Skills</a></li>
+				<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".projects"
+						data-content="menu.projects">Projects</a>
+				</li>
+				<li class="menu__item"><a href="#" class="menu__link" data-goto-header data-goto=".blog"
+						data-content="menu.blog">Blog</a></li>
+			</ul>
+		</div>
+		<div class="footer__menu-text">
+			<p data-content="signature">Designed and built by <span>Andrii Yakovliev</span> ❤️ 2024</p>
+		</div>
+	</div>
+	</div>
+</footer>

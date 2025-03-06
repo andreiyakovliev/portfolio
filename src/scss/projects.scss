@@ -1,0 +1,129 @@
+.projects {
+
+   // .projects__card
+
+   &__card {}
+
+   // .projects__title
+
+   &__title {}
+}
+
+.card-projects {
+   display: flex;
+   border: toRem(1) solid var(--block-color);
+   border-radius: toRem(20);
+   // background-color: var(--block-color);
+   background-color: #fff;
+
+   @media (max-width: $tablet) {
+      flex-direction: column;
+   }
+
+   // .card-projects__image
+
+   &__image {
+      align-self: center;
+      flex: 1 1 50%;
+      height: auto;
+
+      img {
+         max-width: 100%;
+         border-radius: toRem(20);
+      }
+   }
+
+   &__content {
+      flex: 1 1 50%;
+      padding: toRem(25);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--block-color);
+   }
+
+   // .card-projects__title
+
+   &__title {}
+
+   // .card-projects__text
+
+   &__text {
+
+      ul {
+         &:not(:last-child) {
+            margin-bottom: toRem(12);
+         }
+
+         li::before {
+            content: '✓';
+            margin-right: toRem(5);
+         }
+      }
+
+
+      &:not(:last-child) {
+         margin-bottom: toRem(21);
+      }
+
+      p {
+         &:not(:last-child) {
+            margin-bottom: toRem(12);
+         }
+      }
+   }
+
+   // .card-projects__active
+
+   &__active {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      row-gap: toRem(15);
+      width: 100%;
+
+      @include adaptiveValue("row-gap", 20, 15);
+
+      @media (max-width: $mobileSmall) {
+         flex-direction: column;
+      }
+   }
+
+   // .card-projects__item
+
+   &__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: toRem(10);
+
+      @media (any-hover: hover) {
+         &:hover {
+            background: $gradientColor;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+         }
+      }
+   }
+
+   // .card-projects__icon
+
+   &__icon {}
+
+   // .card-projects__link
+
+   &__text {}
+
+
+
+}
+
+.temporary {
+
+   // .temporary__title
+   &__title {
+      text-align: center;
+   }
+}
